@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 /* ─── Helpers ─────────────────────────────────────────────────────── */
@@ -40,6 +40,29 @@ export default function BookCallModal({ open, onClose }: { open: boolean; onClos
   const [submitting, setSubmitting] = useState(false);
   const [done, setDone] = useState(false);
   const [error, setError] = useState("");
+  const [takenTimes, setTakenTimes] = useState<string[]>([]);
+
+  /* Lock body scroll while open — otherwise wheel scroll over the modal can scroll the page behind it */
+  useEffect(() => {
+    document.body.style.overflow = open ? "hidden" : "";
+    return () => { document.body.style.overflow = ""; };
+  }, [open]);
+
+  /* Fetch already-booked times for the chosen day so they can be greyed out */
+  useEffect(() => {
+    if (!selectedDate) { setTakenTimes([]); return; }
+    let cancelled = false;
+    fetch(`/api/book-call?date=${selectedDate}`)
+      .then((r) => r.json())
+      .then((d) => {
+        if (cancelled) return;
+        const taken: string[] = d.taken ?? [];
+        setTakenTimes(taken);
+        setSelectedTime((prev) => (prev && taken.includes(prev) ? "" : prev));
+      })
+      .catch(() => { if (!cancelled) setTakenTimes([]); });
+    return () => { cancelled = true; };
+  }, [selectedDate]);
 
   const todayIso = isoDate(today);
   const monthStart = new Date(today.getFullYear(), today.getMonth(), 1);
@@ -74,7 +97,7 @@ export default function BookCallModal({ open, onClose }: { open: boolean; onClos
 
   function reset() {
     setSelectedDate(""); setSelectedTime(""); setName(""); setPhone(""); setBusiness(""); setNotes("");
-    setError(""); setDone(false); setSubmitting(false);
+    setError(""); setDone(false); setSubmitting(false); setTakenTimes([]);
     setViewMonth(new Date(today.getFullYear(), today.getMonth(), 1));
   }
 
@@ -90,7 +113,15 @@ export default function BookCallModal({ open, onClose }: { open: boolean; onClos
         body: JSON.stringify({ name: name.trim(), phone: phone.trim(), business: business.trim(), date: selectedDate, time: selectedTime, notes: notes.trim() }),
       });
       if (res.ok) { setDone(true); }
-      else { const d = await res.json().catch(() => ({})); setError(d.error ?? "Something went wrong. Please try again."); }
+      else {
+        const d = await res.json().catch(() => ({}));
+        setError(d.error ?? "Something went wrong. Please try again.");
+        if (res.status === 409) {
+          // Slot was taken by someone else in the meantime — refresh the list and drop the selection
+          setSelectedTime("");
+          fetch(`/api/book-call?date=${selectedDate}`).then((r) => r.json()).then((dd) => setTakenTimes(dd.taken ?? [])).catch(() => {});
+        }
+      }
     } catch {
       setError("Network error — please try again.");
     } finally {
@@ -209,12 +240,16 @@ export default function BookCallModal({ open, onClose }: { open: boolean; onClos
                         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(72px, 1fr))", gap: 6 }}>
                           {slots.map((s) => {
                             const isSel = s === selectedTime;
+                            const isTaken = takenTimes.includes(s);
                             return (
-                              <button key={s} onClick={() => setSelectedTime(s)}
+                              <button key={s} onClick={() => !isTaken && setSelectedTime(s)} disabled={isTaken}
+                                title={isTaken ? "Already booked" : undefined}
                                 style={{ padding: "9px 0", fontFamily: MONO, fontSize: "0.66rem", letterSpacing: "0.05em",
-                                  background: isSel ? ACCENT : "rgba(255,255,255,0.03)",
-                                  border: `1px solid ${isSel ? ACCENT : "rgba(255,255,255,0.08)"}`,
-                                  color: isSel ? "#fff" : "rgba(255,255,255,0.7)", cursor: "pointer", transition: "all 0.12s" }}>
+                                  background: isTaken ? "rgba(255,255,255,0.02)" : isSel ? ACCENT : "rgba(255,255,255,0.03)",
+                                  border: `1px solid ${isTaken ? "rgba(255,255,255,0.04)" : isSel ? ACCENT : "rgba(255,255,255,0.08)"}`,
+                                  color: isTaken ? "rgba(255,255,255,0.2)" : isSel ? "#fff" : "rgba(255,255,255,0.7)",
+                                  textDecoration: isTaken ? "line-through" : "none",
+                                  cursor: isTaken ? "not-allowed" : "pointer", transition: "all 0.12s" }}>
                                 {s}
                               </button>
                             );

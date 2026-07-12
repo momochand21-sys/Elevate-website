@@ -85,7 +85,7 @@ export default function HiVisVestPage() {
 
           {/* LEFT: viewer + specs */}
           <div className="flex flex-col gap-10">
-            <div className="relative w-full lg:sticky" style={{ top: "88px", width: "100%", maxWidth: "min(460px, calc(65vh * 1200 / 1400))", margin: "0 auto" }}>
+            <div className="relative w-full lg:sticky lg:top-[88px]" style={{ width: "100%", maxWidth: "min(460px, calc(65vh * 1200 / 1400))", margin: "0 auto" }}>
               <div style={{ paddingBottom: "116.67%" }} />
               <div className="absolute inset-0 overflow-hidden" style={{ background: "#0A0A0E", border: "1px solid rgba(255,255,255,0.06)" }}>
                 {/* subtle glow */}
