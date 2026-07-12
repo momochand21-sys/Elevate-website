@@ -146,25 +146,25 @@ export default function BookCallModal({ open, onClose }: { open: boolean; onClos
             initial={{ opacity: 0, y: 24, scale: 0.98 }} animate={{ opacity: 1, y: 0, scale: 1 }} exit={{ opacity: 0, y: 16, scale: 0.98 }}
             transition={{ duration: 0.32, ease: [0.16, 1, 0.3, 1] }}
             onClick={(e) => e.stopPropagation()}
-            style={{ width: "100%", maxWidth: 560, background: "#0a0a0a", border: "1px solid #1c1c1c", position: "relative" }}
+            style={{ width: "100%", maxWidth: 560, maxHeight: "88vh", background: "#0a0a0a", border: "1px solid #1c1c1c", position: "relative", display: "flex", flexDirection: "column" }}
           >
-            {/* Header */}
-            <div style={{ padding: "26px 28px 18px", borderBottom: "1px solid #161616", position: "relative" }}>
-              <p style={{ fontFamily: MONO, fontSize: "0.55rem", letterSpacing: "0.22em", textTransform: "uppercase", color: ACCENT, marginBottom: 10 }}>
+            {/* Header — stays fixed, never scrolls */}
+            <div style={{ padding: "20px 26px 14px", borderBottom: "1px solid #161616", position: "relative", flexShrink: 0 }}>
+              <p style={{ fontFamily: MONO, fontSize: "0.52rem", letterSpacing: "0.22em", textTransform: "uppercase", color: ACCENT, marginBottom: 8 }}>
                 Schedule a Call
               </p>
-              <h2 style={{ fontFamily: BEBAS, fontSize: "2rem", letterSpacing: "0.04em", color: "#F5F5F3", lineHeight: 0.95 }}>
+              <h2 style={{ fontFamily: BEBAS, fontSize: "1.6rem", letterSpacing: "0.04em", color: "#F5F5F3", lineHeight: 0.95 }}>
                 Book a Call With Our Team
               </h2>
               <button onClick={close} aria-label="Close"
-                style={{ position: "absolute", top: 22, right: 22, width: 30, height: 30, display: "flex", alignItems: "center", justifyContent: "center", background: "transparent", border: "1px solid #2a2a2a", color: "#888", cursor: "pointer", fontSize: "1rem", lineHeight: 1 }}>
+                style={{ position: "absolute", top: 18, right: 18, width: 28, height: 28, display: "flex", alignItems: "center", justifyContent: "center", background: "transparent", border: "1px solid #2a2a2a", color: "#888", cursor: "pointer", fontSize: "1rem", lineHeight: 1 }}>
                 ✕
               </button>
             </div>
 
             {done ? (
               /* ── Success ── */
-              <div style={{ padding: "40px 28px 44px", textAlign: "center" }}>
+              <div style={{ padding: "40px 28px 44px", textAlign: "center", overflowY: "auto" }}>
                 <div style={{ width: 56, height: 56, borderRadius: "50%", background: ACCENT, display: "flex", alignItems: "center", justifyContent: "center", margin: "0 auto 20px" }}>
                   <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5L19 7" stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg>
                 </div>
@@ -181,7 +181,9 @@ export default function BookCallModal({ open, onClose }: { open: boolean; onClos
                 </button>
               </div>
             ) : (
-              <div style={{ padding: "22px 28px 28px", display: "flex", flexDirection: "column", gap: 22 }}>
+              <>
+              {/* Scrollable middle — everything except header/footer lives here */}
+              <div style={{ padding: "16px 26px", display: "flex", flexDirection: "column", gap: 16, overflowY: "auto", flex: "1 1 auto", minHeight: 0 }}>
                 {/* ── Step 1: Calendar ── */}
                 <div>
                   <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 14 }}>
@@ -200,9 +202,9 @@ export default function BookCallModal({ open, onClose }: { open: boolean; onClos
                     </div>
                   </div>
 
-                  <div style={{ display: "grid", gridTemplateColumns: "repeat(7,1fr)", gap: 4 }}>
+                  <div style={{ display: "grid", gridTemplateColumns: "repeat(7,1fr)", gap: 3, maxWidth: 340, margin: "0 auto" }}>
                     {WEEKDAYS.map((w) => (
-                      <div key={w} style={{ textAlign: "center", fontFamily: MONO, fontSize: "0.5rem", letterSpacing: "0.1em", textTransform: "uppercase", color: "rgba(255,255,255,0.25)", paddingBottom: 4 }}>{w}</div>
+                      <div key={w} style={{ textAlign: "center", fontFamily: MONO, fontSize: "0.46rem", letterSpacing: "0.1em", textTransform: "uppercase", color: "rgba(255,255,255,0.25)", paddingBottom: 3 }}>{w}</div>
                     ))}
                     {cells.map((d, i) => {
                       if (!d) return <div key={`e${i}`} />;
@@ -214,7 +216,7 @@ export default function BookCallModal({ open, onClose }: { open: boolean; onClos
                           onClick={() => { setSelectedDate(iso); setSelectedTime(""); }}
                           style={{
                             aspectRatio: "1", display: "flex", alignItems: "center", justifyContent: "center",
-                            fontFamily: MONO, fontSize: "0.72rem",
+                            fontFamily: MONO, fontSize: "0.62rem",
                             background: isSel ? ACCENT : isPast ? "transparent" : "rgba(255,255,255,0.03)",
                             border: `1px solid ${isSel ? ACCENT : "rgba(255,255,255,0.06)"}`,
                             color: isSel ? "#fff" : isPast ? "rgba(255,255,255,0.15)" : "rgba(255,255,255,0.75)",
@@ -230,21 +232,21 @@ export default function BookCallModal({ open, onClose }: { open: boolean; onClos
                 {/* ── Step 2: Time slots ── */}
                 <AnimatePresence>
                   {selectedDate && (
-                    <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: "auto" }} exit={{ opacity: 0, height: 0 }} transition={{ duration: 0.25 }} style={{ overflow: "hidden" }}>
+                    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.2 }}>
                       <p style={{ fontFamily: MONO, fontSize: "0.55rem", letterSpacing: "0.16em", textTransform: "uppercase", color: "rgba(255,255,255,0.5)", marginBottom: 12 }}>
                         2 — Pick a Time <span style={{ color: "rgba(255,255,255,0.25)" }}>· {prettyDate}</span>
                       </p>
                       {slots.length === 0 ? (
                         <p style={{ fontFamily: SANS, fontSize: "0.82rem", color: "rgba(255,255,255,0.4)" }}>No more slots today — please choose another day.</p>
                       ) : (
-                        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(72px, 1fr))", gap: 6 }}>
+                        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(54px, 1fr))", gap: 5 }}>
                           {slots.map((s) => {
                             const isSel = s === selectedTime;
                             const isTaken = takenTimes.includes(s);
                             return (
                               <button key={s} onClick={() => !isTaken && setSelectedTime(s)} disabled={isTaken}
                                 title={isTaken ? "Already booked" : undefined}
-                                style={{ padding: "9px 0", fontFamily: MONO, fontSize: "0.66rem", letterSpacing: "0.05em",
+                                style={{ padding: "6px 0", fontFamily: MONO, fontSize: "0.58rem", letterSpacing: "0.03em",
                                   background: isTaken ? "rgba(255,255,255,0.02)" : isSel ? ACCENT : "rgba(255,255,255,0.03)",
                                   border: `1px solid ${isTaken ? "rgba(255,255,255,0.04)" : isSel ? ACCENT : "rgba(255,255,255,0.08)"}`,
                                   color: isTaken ? "rgba(255,255,255,0.2)" : isSel ? "#fff" : "rgba(255,255,255,0.7)",
@@ -263,7 +265,7 @@ export default function BookCallModal({ open, onClose }: { open: boolean; onClos
                 {/* ── Step 3: Details ── */}
                 <AnimatePresence>
                   {selectedDate && selectedTime && (
-                    <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: "auto" }} exit={{ opacity: 0, height: 0 }} transition={{ duration: 0.25 }} style={{ overflow: "hidden" }}>
+                    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.2 }}>
                       <p style={{ fontFamily: MONO, fontSize: "0.55rem", letterSpacing: "0.16em", textTransform: "uppercase", color: "rgba(255,255,255,0.5)", marginBottom: 12 }}>
                         3 — Your Details
                       </p>
@@ -281,11 +283,13 @@ export default function BookCallModal({ open, onClose }: { open: boolean; onClos
                   )}
                 </AnimatePresence>
 
-                {error && <p style={{ fontFamily: MONO, fontSize: "0.62rem", color: "#f87171" }}>{error}</p>}
+              </div>
 
-                {/* Submit */}
+              {/* Footer — stays fixed, never scrolls, so the submit button is always reachable */}
+              <div style={{ padding: "14px 26px 20px", borderTop: "1px solid #161616", flexShrink: 0 }}>
+                {error && <p style={{ fontFamily: MONO, fontSize: "0.62rem", color: "#f87171", marginBottom: 10 }}>{error}</p>}
                 <button onClick={submit} disabled={!canSubmit || submitting}
-                  style={{ width: "100%", padding: "15px 0", marginTop: 2,
+                  style={{ width: "100%", padding: "14px 0",
                     background: canSubmit ? (submitting ? "rgba(0,65,249,0.55)" : ACCENT) : "transparent",
                     border: `1px solid ${canSubmit ? ACCENT : "rgba(255,255,255,0.14)"}`,
                     color: canSubmit ? "#fff" : "rgba(255,255,255,0.35)",
@@ -294,6 +298,7 @@ export default function BookCallModal({ open, onClose }: { open: boolean; onClos
                   {submitting ? "Booking…" : selectedDate && selectedTime ? "Confirm Booking →" : "Pick a date & time"}
                 </button>
               </div>
+              </>
             )}
           </motion.div>
         </motion.div>
