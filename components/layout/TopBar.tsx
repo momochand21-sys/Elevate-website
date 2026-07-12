@@ -18,6 +18,7 @@ export default function TopBar() {
 
   return (
     <div
+      className="px-3 lg:px-12"
       style={{
         position: "fixed", top: 0, left: 0, right: 0, zIndex: 600,
         height: 38,
@@ -26,7 +27,6 @@ export default function TopBar() {
         display: "grid",
         gridTemplateColumns: "1fr auto 1fr",
         alignItems: "center",
-        padding: "0 48px",
       }}
     >
       {/* Left — empty spacer */}
@@ -61,11 +61,15 @@ export default function TopBar() {
         href="/portal"
         className="lg:hidden"
         style={{
+          display: "inline-block",
           fontFamily: "var(--font-dm-sans,sans-serif)",
-          fontSize: "0.7rem", fontWeight: 500,
-          color: "rgba(255,255,255,0.5)",
+          fontSize: "0.64rem", fontWeight: 500,
+          color: "rgba(255,255,255,0.85)",
           textDecoration: "none",
           whiteSpace: "nowrap",
+          background: "rgba(0,65,249,0.18)",
+          border: "1px solid rgba(0,65,249,0.4)",
+          padding: "4px 9px",
         }}
       >
         Client Portal
