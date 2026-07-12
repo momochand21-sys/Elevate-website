@@ -174,7 +174,7 @@ export default function Navbar() {
           </button>
 
           {/* Desktop nav links */}
-          <nav className="hidden md:flex items-center gap-10">
+          <nav className="hidden lg:flex items-center gap-10">
             {navLinks.map((link) => (
               <div
                 key={link.label}
@@ -254,7 +254,7 @@ export default function Navbar() {
             </button>
 
             <MagneticButton
-              className="hidden lg:flex items-center gap-2 font-mono text-[10px] tracking-[0.14em] uppercase text-muted hover:text-off-white border border-white/10 hover:border-blue/40 transition-all duration-300 px-5 py-2.5"
+              className="!hidden lg:!flex items-center gap-2 font-mono text-[10px] tracking-[0.14em] uppercase text-muted hover:text-off-white border border-white/10 hover:border-blue/40 transition-all duration-300 px-5 py-2.5"
               strength={25}
               onClick={() => setBookOpen(true)}
             >
@@ -266,7 +266,7 @@ export default function Navbar() {
             </MagneticButton>
 
             <MagneticButton
-              className="hidden md:flex items-center gap-2 font-mono text-[10px] tracking-[0.14em] uppercase text-off-white border border-blue/50 hover:border-blue hover:bg-blue/10 transition-all duration-300 px-5 py-2.5"
+              className="!hidden lg:!flex items-center gap-2 font-mono text-[10px] tracking-[0.14em] uppercase text-off-white border border-blue/50 hover:border-blue hover:bg-blue/10 transition-all duration-300 px-5 py-2.5"
               strength={25}
               onClick={openQuote}
             >
@@ -279,7 +279,7 @@ export default function Navbar() {
             {/* Mobile hamburger */}
             <button
               onClick={() => setMobileOpen(!mobileOpen)}
-              className="md:hidden flex flex-col gap-[5px] p-2 cursor-pointer"
+              className="lg:hidden flex flex-col gap-[5px] p-2 cursor-pointer"
               aria-label="Toggle menu"
             >
               <motion.span animate={mobileOpen ? { rotate: 45,  y:  7 } : { rotate: 0, y: 0 }} className="block w-6 h-[1px] bg-off-white" transition={{ duration: 0.3 }}/>
