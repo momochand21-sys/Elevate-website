@@ -44,6 +44,21 @@ export interface Lead {
   updatedAt: string;
 }
 
+export type CallBookingStatus = "new" | "confirmed" | "completed" | "cancelled";
+
+export interface CallBooking {
+  id: string;
+  name: string;
+  phone: string;
+  business: string;
+  date: string;
+  time: string;
+  notes: string | null;
+  status: CallBookingStatus;
+  createdAt: string;
+  updatedAt: string;
+}
+
 export type OrderStatus =
   | "payment_pending"
   | "paid"

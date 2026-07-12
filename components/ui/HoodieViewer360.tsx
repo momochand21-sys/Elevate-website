@@ -189,7 +189,7 @@ export default function HoodieViewer360() {
       <div
         ref={stageRef}
         className="absolute inset-0"
-        style={{ cursor: "grab", touchAction: "none" }}
+        style={{ cursor: "grab", touchAction: "pan-y" }}
         onPointerDown={onPointerDown}
         onPointerMove={onPointerMove}
         onPointerUp={onPointerUp}

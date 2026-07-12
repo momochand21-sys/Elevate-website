@@ -13,13 +13,14 @@ export async function POST(req: NextRequest) {
     const body = await req.json();
     const name = String(body.name ?? "").trim();
     const phone = String(body.phone ?? "").trim();
+    const business = String(body.business ?? "").trim();
     const date = String(body.date ?? "").trim(); // YYYY-MM-DD
     const time = String(body.time ?? "").trim(); // HH:MM
     const notes = String(body.notes ?? "").trim() || null;
 
-    if (!name || !phone || !date || !time) {
+    if (!name || !phone || !business || !date || !time) {
       return NextResponse.json(
-        { error: "Please enter your name, phone number, and pick a date and time." },
+        { error: "Please enter your name, phone number, business, and pick a date and time." },
         { status: 400 }
       );
     }
@@ -30,7 +31,7 @@ export async function POST(req: NextRequest) {
     }
 
     const booking = await prisma.callBooking.create({
-      data: { id: generateId(), name, phone, date, time, notes, status: "new" },
+      data: { id: generateId(), name, phone, business, date, time, notes, status: "new" },
     });
 
     return NextResponse.json({ success: true, id: booking.id });

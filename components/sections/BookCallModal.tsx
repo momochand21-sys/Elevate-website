@@ -35,6 +35,7 @@ export default function BookCallModal({ open, onClose }: { open: boolean; onClos
   const [selectedTime, setSelectedTime] = useState<string>("");
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
+  const [business, setBusiness] = useState("");
   const [notes, setNotes] = useState("");
   const [submitting, setSubmitting] = useState(false);
   const [done, setDone] = useState(false);
@@ -69,10 +70,10 @@ export default function BookCallModal({ open, onClose }: { open: boolean; onClos
     });
   }, [selectedDate, todayIso]);
 
-  const canSubmit = !!selectedDate && !!selectedTime && name.trim().length > 1 && phone.trim().length >= 7;
+  const canSubmit = !!selectedDate && !!selectedTime && name.trim().length > 1 && phone.trim().length >= 7 && business.trim().length > 1;
 
   function reset() {
-    setSelectedDate(""); setSelectedTime(""); setName(""); setPhone(""); setNotes("");
+    setSelectedDate(""); setSelectedTime(""); setName(""); setPhone(""); setBusiness(""); setNotes("");
     setError(""); setDone(false); setSubmitting(false);
     setViewMonth(new Date(today.getFullYear(), today.getMonth(), 1));
   }
@@ -86,7 +87,7 @@ export default function BookCallModal({ open, onClose }: { open: boolean; onClos
       const res = await fetch("/api/book-call", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name: name.trim(), phone: phone.trim(), date: selectedDate, time: selectedTime, notes: notes.trim() }),
+        body: JSON.stringify({ name: name.trim(), phone: phone.trim(), business: business.trim(), date: selectedDate, time: selectedTime, notes: notes.trim() }),
       });
       if (res.ok) { setDone(true); }
       else { const d = await res.json().catch(() => ({})); setError(d.error ?? "Something went wrong. Please try again."); }
@@ -235,6 +236,8 @@ export default function BookCallModal({ open, onClose }: { open: boolean; onClos
                         <input value={name} onChange={(e) => setName(e.target.value)} placeholder="Full name"
                           style={inputStyle} />
                         <input value={phone} onChange={(e) => setPhone(e.target.value)} placeholder="Phone number" type="tel" inputMode="tel"
+                          style={inputStyle} />
+                        <input value={business} onChange={(e) => setBusiness(e.target.value)} placeholder="Business name"
                           style={inputStyle} />
                         <textarea value={notes} onChange={(e) => setNotes(e.target.value)} placeholder="Anything you'd like to discuss? (optional)" rows={2}
                           style={{ ...inputStyle, resize: "vertical" }} />

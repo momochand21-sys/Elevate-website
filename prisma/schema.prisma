@@ -103,6 +103,7 @@ model CallBooking {
   id        String   @id
   name      String
   phone     String
+  business  String
   date      String // YYYY-MM-DD (customer's chosen day)
   time      String // HH:MM 24h (slot from 09:00 onwards)
   notes     String?

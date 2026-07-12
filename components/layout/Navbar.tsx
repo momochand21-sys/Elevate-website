@@ -9,6 +9,7 @@ import ElevateLogo from "@/components/ui/ElevateLogo";
 import { cn } from "@/lib/utils";
 import { useBasket } from "@/lib/basket-context";
 import { useQuoteModal } from "@/lib/quote-modal-context";
+import BookCallModal from "@/components/sections/BookCallModal";
 
 /* ─────────────────────────────────────────────────────────────────
    NAV DATA
@@ -104,6 +105,7 @@ export default function Navbar() {
   const [mobileOpen,        setMobileOpen]         = useState(false);
   const [mobileProductsOpen, setMobileProductsOpen] = useState(false);
   const [activeDropdown,    setActiveDropdown]     = useState<string | null>(null);
+  const [bookOpen,          setBookOpen]           = useState(false);
   const hideTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   /* Scroll detection */
@@ -252,6 +254,18 @@ export default function Navbar() {
             </button>
 
             <MagneticButton
+              className="hidden lg:flex items-center gap-2 font-mono text-[10px] tracking-[0.14em] uppercase text-muted hover:text-off-white border border-white/10 hover:border-blue/40 transition-all duration-300 px-5 py-2.5"
+              strength={25}
+              onClick={() => setBookOpen(true)}
+            >
+              <svg width="12" height="12" viewBox="0 0 14 14" fill="none">
+                <path d="M7 1C3.686 1 1 3.686 1 7s2.686 6 6 6 6-2.686 6-6-2.686-6-6-6z" stroke="currentColor" strokeWidth="1.3" />
+                <path d="M7 4v4l2 2" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+              <span>Book a Call</span>
+            </MagneticButton>
+
+            <MagneticButton
               className="hidden md:flex items-center gap-2 font-mono text-[10px] tracking-[0.14em] uppercase text-off-white border border-blue/50 hover:border-blue hover:bg-blue/10 transition-all duration-300 px-5 py-2.5"
               strength={25}
               onClick={openQuote}
@@ -382,15 +396,25 @@ export default function Navbar() {
                 animate={{ x: 0,   opacity: 1 }}
                 exit={{    x: -40, opacity: 0 }}
                 transition={{ delay: 0.44, ease: [0.16, 1, 0.3, 1], duration: 0.6 }}
-                className="mt-8"
+                className="mt-8 flex flex-col sm:flex-row gap-3"
               >
                 <button
                   onClick={() => navigate("#cta")}
-                  className="inline-flex items-center gap-3 bg-blue text-white font-mono text-sm tracking-[0.14em] uppercase px-8 py-4"
+                  className="inline-flex items-center justify-center gap-3 bg-blue text-white font-mono text-sm tracking-[0.14em] uppercase px-8 py-4"
                 >
                   Get a Quote
                   <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
                     <path d="M2 7H12M7 2L12 7L7 12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                </button>
+                <button
+                  onClick={() => { setMobileOpen(false); setBookOpen(true); }}
+                  className="inline-flex items-center justify-center gap-3 border border-white/15 text-off-white font-mono text-sm tracking-[0.14em] uppercase px-8 py-4"
+                >
+                  Book a Call
+                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                    <path d="M7 1C3.686 1 1 3.686 1 7s2.686 6 6 6 6-2.686 6-6-2.686-6-6-6z" stroke="currentColor" strokeWidth="1.3" />
+                    <path d="M7 4v4l2 2" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" />
                   </svg>
                 </button>
               </motion.div>
@@ -402,6 +426,8 @@ export default function Navbar() {
           </motion.div>
         )}
       </AnimatePresence>
+
+      <BookCallModal open={bookOpen} onClose={() => setBookOpen(false)} />
     </>
   );
 }

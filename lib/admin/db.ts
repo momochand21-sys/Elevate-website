@@ -5,6 +5,7 @@ import type {
   Order,
   Customer,
   Lead,
+  CallBooking,
   OrderItem,
   OrderCosts,
   DecorationPrice,
@@ -12,6 +13,7 @@ import type {
   QuoteStatus,
   OrderStatus,
   LeadStatus,
+  CallBookingStatus,
 } from "./types";
 
 /**
@@ -25,7 +27,7 @@ import type {
  * row shapes (Date objects, JsonValue, etc.).
  */
 
-type Name = "products" | "quotes" | "orders" | "customers" | "leads";
+type Name = "products" | "quotes" | "orders" | "customers" | "leads" | "bookings";
 
 /* ── helpers ─────────────────────────────────────────────────────────── */
 
@@ -45,6 +47,8 @@ function delegate(name: Name): any {
       return prisma.customer;
     case "leads":
       return prisma.lead;
+    case "bookings":
+      return prisma.callBooking;
   }
 }
 
@@ -157,6 +161,21 @@ function mapLead(r: any): Lead {
   };
 }
 
+function mapCallBooking(r: any): CallBooking {
+  return {
+    id: r.id,
+    name: r.name,
+    phone: r.phone,
+    business: r.business ?? "",
+    date: r.date,
+    time: r.time,
+    notes: r.notes ?? null,
+    status: r.status as CallBookingStatus,
+    createdAt: toIso(r.createdAt),
+    updatedAt: toIso(r.updatedAt),
+  };
+}
+
 function mapRow(name: Name, row: any): any {
   switch (name) {
     case "products":
@@ -169,6 +188,8 @@ function mapRow(name: Name, row: any): any {
       return mapCustomer(row);
     case "leads":
       return mapLead(row);
+    case "bookings":
+      return mapCallBooking(row);
   }
 }
 
