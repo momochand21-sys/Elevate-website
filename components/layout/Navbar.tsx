@@ -239,27 +239,15 @@ export default function Navbar() {
             {/* Mobile-only quick actions — Products & Book a Call, always visible without opening the menu */}
             <button
               onClick={() => navigate("/products")}
-              className="lg:hidden flex items-center justify-center cursor-pointer"
-              style={{ width: 34, height: 34 }}
-              aria-label="Products"
+              className="lg:hidden font-mono text-[9px] tracking-[0.14em] uppercase text-muted hover:text-off-white transition-colors duration-200 cursor-pointer whitespace-nowrap"
             >
-              <svg width="17" height="17" viewBox="0 0 18 18" fill="none">
-                <rect x="2" y="2" width="6" height="6" stroke="rgba(245,245,243,0.6)" strokeWidth="1.3"/>
-                <rect x="10" y="2" width="6" height="6" stroke="rgba(245,245,243,0.6)" strokeWidth="1.3"/>
-                <rect x="2" y="10" width="6" height="6" stroke="rgba(245,245,243,0.6)" strokeWidth="1.3"/>
-                <rect x="10" y="10" width="6" height="6" stroke="rgba(245,245,243,0.6)" strokeWidth="1.3"/>
-              </svg>
+              Products
             </button>
             <button
               onClick={() => setBookOpen(true)}
-              className="lg:hidden flex items-center justify-center cursor-pointer"
-              style={{ width: 34, height: 34 }}
-              aria-label="Book a call"
+              className="lg:hidden font-mono text-[9px] tracking-[0.14em] uppercase text-muted hover:text-off-white transition-colors duration-200 cursor-pointer whitespace-nowrap"
             >
-              <svg width="17" height="17" viewBox="0 0 14 14" fill="none">
-                <path d="M7 1C3.686 1 1 3.686 1 7s2.686 6 6 6 6-2.686 6-6-2.686-6-6-6z" stroke="rgba(245,245,243,0.6)" strokeWidth="1.3" />
-                <path d="M7 4v4l2 2" stroke="rgba(245,245,243,0.6)" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
+              Book a Call
             </button>
 
             {/* Basket icon */}

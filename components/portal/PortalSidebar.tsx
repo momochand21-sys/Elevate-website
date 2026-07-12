@@ -20,12 +20,58 @@ export default function PortalSidebar() {
     href === "/portal" ? pathname === "/portal" : pathname.startsWith(href);
 
   return (
-    <aside style={{
+    <>
+    {/* ── Mobile: compact horizontal bar ── */}
+    <div className="flex lg:hidden" style={{
+      background: "#07070A",
+      borderBottom: "1px solid rgba(255,255,255,0.05)",
+      flexDirection: "column",
+    }}>
+      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "14px 16px", gap: 12 }}>
+        <p style={{
+          fontFamily: "var(--font-jetbrains,monospace)",
+          fontSize: "0.5rem", letterSpacing: "0.18em", textTransform: "uppercase",
+          color: "rgba(0,65,249,0.7)", whiteSpace: "nowrap",
+        }}>
+          Client Portal{customer ? ` · ${customer.company}` : ""}
+        </p>
+        <button onClick={logout} style={{
+          fontFamily: "var(--font-jetbrains,monospace)", fontSize: "0.55rem",
+          letterSpacing: "0.1em", textTransform: "uppercase",
+          color: "rgba(241,87,87,0.6)", background: "none", border: "none",
+          cursor: "pointer", padding: 0, whiteSpace: "nowrap",
+        }}>
+          Sign Out
+        </button>
+      </div>
+      <div style={{ display: "flex", overflowX: "auto", padding: "0 12px 10px", gap: 6 }}>
+        {NAV.map(item => (
+          <Link key={item.href} href={item.href} style={{ flexShrink: 0 }}>
+            <div style={{
+              padding: "7px 14px",
+              background: isActive(item.href) ? "rgba(0,65,249,0.14)" : "rgba(255,255,255,0.03)",
+              border: `1px solid ${isActive(item.href) ? "rgba(0,65,249,0.4)" : "rgba(255,255,255,0.07)"}`,
+              whiteSpace: "nowrap",
+            }}>
+              <span style={{
+                fontFamily: "var(--font-jetbrains,monospace)",
+                fontSize: "0.62rem", letterSpacing: "0.08em", textTransform: "uppercase",
+                color: isActive(item.href) ? "#fff" : "rgba(255,255,255,0.45)",
+              }}>
+                {item.label}
+              </span>
+            </div>
+          </Link>
+        ))}
+      </div>
+    </div>
+
+    {/* ── Desktop: full vertical sidebar ── */}
+    <aside className="hidden lg:flex" style={{
       width: 220,
       flexShrink: 0,
       background: "#07070A",
       borderRight: "1px solid rgba(255,255,255,0.05)",
-      display: "flex",
       flexDirection: "column",
       height: "100%",
       position: "sticky",
@@ -120,5 +166,6 @@ export default function PortalSidebar() {
         </button>
       </div>
     </aside>
+    </>
   );
 }

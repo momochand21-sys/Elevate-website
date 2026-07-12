@@ -28,7 +28,7 @@ export default function PortalLogin() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center px-6" style={{ background:"#07070A" }}>
+    <div className="min-h-screen flex items-center justify-center px-6 pt-[102px] md:pt-[110px]" style={{ background:"#07070A" }}>
       <div style={{ width:"100%", maxWidth:420 }}>
 
         {/* Logo */}

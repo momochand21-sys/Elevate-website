@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 export default function TopBar() {
   const [query, setQuery] = useState("");
@@ -54,8 +55,22 @@ export default function TopBar() {
         info@elevateworkwear.com
       </a>
 
-      {/* Right — search */}
-      <form onSubmit={handleSearch} style={{ display: "flex", alignItems: "center", gap: 0, justifySelf: "end" }}>
+      {/* Right — search (desktop) / Client Portal (mobile) */}
+      <div style={{ justifySelf: "end" }}>
+      <Link
+        href="/portal"
+        className="lg:hidden"
+        style={{
+          fontFamily: "var(--font-dm-sans,sans-serif)",
+          fontSize: "0.7rem", fontWeight: 500,
+          color: "rgba(255,255,255,0.5)",
+          textDecoration: "none",
+          whiteSpace: "nowrap",
+        }}
+      >
+        Client Portal
+      </Link>
+      <form onSubmit={handleSearch} className="hidden lg:flex" style={{ alignItems: "center", gap: 0 }}>
         <input
           type="text"
           value={query}
@@ -96,6 +111,7 @@ export default function TopBar() {
           </svg>
         </button>
       </form>
+      </div>
     </div>
   );
 }
