@@ -1,8 +1,14 @@
-"use client";
-
+import type { Metadata } from "next";
 import Link from "next/link";
 import PaddedGiletViewer360 from "@/components/ui/PaddedGiletViewer360";
-import { useQuoteModal } from "@/lib/quote-modal-context";
+import PaddedGiletQuoteFlow from "@/components/sections/PaddedGiletQuoteFlow";
+import BrandingPricingTable from "@/components/ui/BrandingPricingTable";
+
+export const metadata: Metadata = {
+  title: "Padded Bodywarmer Gilet | Elevate Workwear Solutions",
+  description:
+    "Padded sleeveless bodywarmer gilet with embroidered or printed branding. Regular UK fit, unisex. Available for bulk B2B orders.",
+};
 
 const SPECS = [
   { label: "Product Code", value: "ELV-012" },
@@ -44,8 +50,6 @@ function SpecsTable() {
 }
 
 export default function PaddedGiletPage() {
-  const { open: openQuote } = useQuoteModal();
-
   const CRUMBS = [
     { label: "Home", href: "/" },
     { label: "Products", href: "/products" },
@@ -81,14 +85,17 @@ export default function PaddedGiletPage() {
 
           {/* LEFT: viewer + specs */}
           <div className="flex flex-col gap-10">
-            <div className="relative w-full lg:sticky overflow-hidden" style={{ top: "88px", aspectRatio: "693/995", maxHeight: "90vh", width: "100%", background: "#0A0A0E", border: "1px solid rgba(255,255,255,0.06)" }}>
-              {/* subtle glow */}
-              <div className="absolute inset-0 pointer-events-none" style={{ background: "radial-gradient(ellipse 70% 60% at 50% 45%, rgba(0,65,249,0.08) 0%, transparent 70%)" }} />
-              <PaddedGiletViewer360 />
-              <div className="absolute top-3 left-3 flex items-center gap-1.5 z-10"
-                style={{ background: "rgba(4,4,8,0.85)", backdropFilter: "blur(8px)", border: "1px solid rgba(0,65,249,0.3)", padding: "3px 8px" }}>
-                <div className="w-1.5 h-1.5 rounded-full" style={{ background: "#0041F9", boxShadow: "0 0 6px rgba(0,65,249,0.8)" }} />
-                <span style={{ fontFamily: "var(--font-jetbrains,monospace)", fontSize: "0.45rem", letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(180,190,220,0.75)" }}>Front · Side · Back</span>
+            <div className="relative w-full lg:sticky" style={{ top: "88px", width: "100%", maxWidth: "min(460px, calc(65vh * 1200 / 1400))", margin: "0 auto" }}>
+              <div style={{ paddingBottom: "116.67%" }} />
+              <div className="absolute inset-0 overflow-hidden" style={{ background: "#0A0A0E", border: "1px solid rgba(255,255,255,0.06)" }}>
+                {/* subtle glow */}
+                <div className="absolute inset-0 pointer-events-none" style={{ background: "radial-gradient(ellipse 70% 60% at 50% 45%, rgba(0,65,249,0.08) 0%, transparent 70%)" }} />
+                <PaddedGiletViewer360 />
+                <div className="absolute top-3 left-3 flex items-center gap-1.5 z-10"
+                  style={{ background: "rgba(4,4,8,0.85)", backdropFilter: "blur(8px)", border: "1px solid rgba(0,65,249,0.3)", padding: "3px 8px" }}>
+                  <div className="w-1.5 h-1.5 rounded-full" style={{ background: "#0041F9", boxShadow: "0 0 6px rgba(0,65,249,0.8)" }} />
+                  <span style={{ fontFamily: "var(--font-jetbrains,monospace)", fontSize: "0.45rem", letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(180,190,220,0.75)" }}>Front · Side · Back</span>
+                </div>
               </div>
             </div>
             <div className="hidden lg:block"><SpecsTable /></div>
@@ -146,14 +153,9 @@ export default function PaddedGiletPage() {
               </p>
             </div>
 
-            <button onClick={openQuote}
-              className="group flex items-center justify-center gap-2.5 bg-blue text-white px-8 py-4 cursor-pointer w-full sm:w-auto self-start"
-              style={{ fontFamily: "var(--font-jetbrains,monospace)", fontSize: "0.62rem", letterSpacing: "0.18em", textTransform: "uppercase" }}>
-              Request a Quote
-              <svg className="transition-transform duration-300 group-hover:translate-x-1" width="13" height="13" viewBox="0 0 14 14" fill="none">
-                <path d="M2 7H12M7 2L12 7L7 12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
-            </button>
+            <BrandingPricingTable />
+            <div className="h-[1px] w-full" style={{ background: "rgba(255,255,255,0.06)" }} />
+            <PaddedGiletQuoteFlow productName="Padded Bodywarmer Gilet" />
 
             <Link href="/products">
               <span className="inline-flex items-center gap-2 font-mono text-[10px] tracking-[0.16em] uppercase text-muted hover:text-off-white transition-colors duration-200 cursor-pointer">

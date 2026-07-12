@@ -5,7 +5,9 @@
 
 export type ProductCode =
   | "ELV-001" | "ELV-002" | "ELV-003"
-  | "ELV-004" | "ELV-005" | "ELV-006";
+  | "ELV-004" | "ELV-005" | "ELV-006"
+  | "ELV-007" | "ELV-008" | "ELV-009"
+  | "ELV-010" | "ELV-011" | "ELV-012" | "ELV-013";
 
 export type BrandingMethod = "embroidery" | "print" | "both";
 
@@ -59,6 +61,55 @@ export const PRODUCT_TIERS: Record<ProductCode, PriceTier[]> = {
     { min: 100, max: 249,      price: 21.49 },
     { min: 250, max: Infinity, price: 19.99 },
   ],
+  "ELV-007": [ // Hi-Vis Padded Jacket
+    { min: 10,  max: 24,       price: 32.99 },
+    { min: 25,  max: 49,       price: 31.49 },
+    { min: 50,  max: 99,       price: 29.99 },
+    { min: 100, max: 249,      price: 27.99 },
+    { min: 250, max: Infinity, price: 25.99 },
+  ],
+  "ELV-008": [ // Hi-Vis Safety Vest
+    { min: 10,  max: 24,       price: 14.99 },
+    { min: 25,  max: 49,       price: 13.99 },
+    { min: 50,  max: 99,       price: 12.99 },
+    { min: 100, max: 249,      price: 11.99 },
+    { min: 250, max: Infinity, price: 10.99 },
+  ],
+  "ELV-009": [ // Workwear Apron
+    { min: 10,  max: 24,       price: 9.99 },
+    { min: 25,  max: 49,       price: 9.49 },
+    { min: 50,  max: 99,       price: 8.99 },
+    { min: 100, max: 249,      price: 8.49 },
+    { min: 250, max: Infinity, price: 7.99 },
+  ],
+  "ELV-010": [ // Workwear Tabard
+    { min: 10,  max: 24,       price: 8.99 },
+    { min: 25,  max: 49,       price: 8.49 },
+    { min: 50,  max: 99,       price: 7.99 },
+    { min: 100, max: 249,      price: 7.49 },
+    { min: 250, max: Infinity, price: 6.99 },
+  ],
+  "ELV-011": [ // Workwear T-Shirt
+    { min: 10,  max: 24,       price: 8.99 },
+    { min: 25,  max: 49,       price: 8.49 },
+    { min: 50,  max: 99,       price: 7.99 },
+    { min: 100, max: 249,      price: 7.49 },
+    { min: 250, max: Infinity, price: 6.99 },
+  ],
+  "ELV-012": [ // Padded Bodywarmer Gilet
+    { min: 10,  max: 24,       price: 26.99 },
+    { min: 25,  max: 49,       price: 25.49 },
+    { min: 50,  max: 99,       price: 23.99 },
+    { min: 100, max: 249,      price: 22.49 },
+    { min: 250, max: Infinity, price: 21.49 },
+  ],
+  "ELV-013": [ // Workwear Cargo Pants
+    { min: 10,  max: 24,       price: 28.99 },
+    { min: 25,  max: 49,       price: 27.49 },
+    { min: 50,  max: 99,       price: 25.99 },
+    { min: 100, max: 249,      price: 24.49 },
+    { min: 250, max: Infinity, price: 22.99 },
+  ],
 };
 
 /** Fallback retail price when qty < 10 (or no tier found) */
@@ -69,6 +120,13 @@ export const PRODUCT_BASE_PRICE: Record<ProductCode, number> = {
   "ELV-004": 7.99,
   "ELV-005": 26.99,
   "ELV-006": 24.99,
+  "ELV-007": 32.99,
+  "ELV-008": 14.99,
+  "ELV-009": 9.99,
+  "ELV-010": 8.99,
+  "ELV-011": 8.99,
+  "ELV-012": 26.99,
+  "ELV-013": 28.99,
 };
 
 /* ── Tiered branding pricing — drops at 25 / 50 / 100 / 250 units ── */

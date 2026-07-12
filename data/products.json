@@ -3,35 +3,112 @@
     "code": "ELV-001",
     "name": "Premium Workwear Hoodie",
     "category": "Hoodies",
-    "garmentCost": 18.60,
+    "garmentCost": 18.6,
     "garmentSellPrice": 25.99,
     "decorationCosts": {
-      "Left Chest":   { "embroidery": 1.80, "print": 0.80 },
-      "Right Chest":  { "embroidery": 1.80, "print": 0.80 },
-      "Front Centre": { "embroidery": 1.80, "print": 0.80 },
-      "Front Chest":  { "embroidery": 1.80, "print": 0.80 },
-      "Back":         { "embroidery": 2.50, "print": 1.25 },
-      "Left Shoulder":  { "embroidery": 0.75, "print": 0.50 },
-      "Right Shoulder": { "embroidery": 0.75, "print": 0.50 }
+      "Left Chest": {
+        "embroidery": 1.8,
+        "print": 0.8
+      },
+      "Right Chest": {
+        "embroidery": 1.8,
+        "print": 0.8
+      },
+      "Front Centre": {
+        "embroidery": 1.8,
+        "print": 0.8
+      },
+      "Front Chest": {
+        "embroidery": 1.8,
+        "print": 0.8
+      },
+      "Back": {
+        "embroidery": 2.5,
+        "print": 1.25
+      },
+      "Left Shoulder": {
+        "embroidery": 0.75,
+        "print": 0.5
+      },
+      "Right Shoulder": {
+        "embroidery": 0.75,
+        "print": 0.5
+      }
     },
     "decorationSellPrices": {
-      "Left Chest":   { "embroidery": 3.50, "print": 1.67 },
-      "Right Chest":  { "embroidery": 3.50, "print": 1.67 },
-      "Front Centre": { "embroidery": 3.50, "print": 1.67 },
-      "Front Chest":  { "embroidery": 3.50, "print": 1.67 },
-      "Back":         { "embroidery": 5.00, "print": 2.50 },
-      "Left Shoulder":  { "embroidery": 1.50, "print": 1.00 },
-      "Right Shoulder": { "embroidery": 1.50, "print": 1.00 }
+      "Left Chest": {
+        "embroidery": 3.5,
+        "print": 1.67
+      },
+      "Right Chest": {
+        "embroidery": 3.5,
+        "print": 1.67
+      },
+      "Front Centre": {
+        "embroidery": 3.5,
+        "print": 1.67
+      },
+      "Front Chest": {
+        "embroidery": 3.5,
+        "print": 1.67
+      },
+      "Back": {
+        "embroidery": 5.0,
+        "print": 2.5
+      },
+      "Left Shoulder": {
+        "embroidery": 1.5,
+        "print": 1.0
+      },
+      "Right Shoulder": {
+        "embroidery": 1.5,
+        "print": 1.0
+      }
     },
-    "brandingPositions": ["Left Chest", "Right Chest", "Front Centre", "Front Chest", "Back", "Left Shoulder", "Right Shoulder"],
-    "sizes": ["XS", "S", "M", "L", "XL", "XXL"],
+    "brandingPositions": [
+      "Left Chest",
+      "Right Chest",
+      "Front Centre",
+      "Front Chest",
+      "Back",
+      "Left Shoulder",
+      "Right Shoulder"
+    ],
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
     "active": true,
     "volumeTiers": [
-      { "min": 10,  "max": 24,     "price": 25.99 },
-      { "min": 25,  "max": 49,     "price": 25.49 },
-      { "min": 50,  "max": 99,     "price": 23.99 },
-      { "min": 100, "max": 249,    "price": 22.49 },
-      { "min": 250, "max": 999999, "price": 20.99 }
+      {
+        "min": 10,
+        "max": 24,
+        "price": 25.99
+      },
+      {
+        "min": 25,
+        "max": 49,
+        "price": 25.49
+      },
+      {
+        "min": 50,
+        "max": 99,
+        "price": 23.99
+      },
+      {
+        "min": 100,
+        "max": 249,
+        "price": 22.49
+      },
+      {
+        "min": 250,
+        "max": 999999,
+        "price": 20.99
+      }
     ],
     "updatedAt": "2024-01-01T00:00:00.000Z"
   },
@@ -42,32 +119,109 @@
     "garmentCost": 9.12,
     "garmentSellPrice": 12.99,
     "decorationCosts": {
-      "Left Chest":   { "embroidery": 1.80, "print": 0.80 },
-      "Right Chest":  { "embroidery": 1.80, "print": 0.80 },
-      "Front Centre": { "embroidery": 1.80, "print": 0.80 },
-      "Front Chest":  { "embroidery": 1.80, "print": 0.80 },
-      "Back":         { "embroidery": 2.50, "print": 1.25 },
-      "Left Shoulder":  { "embroidery": 0.75, "print": 0.50 },
-      "Right Shoulder": { "embroidery": 0.75, "print": 0.50 }
+      "Left Chest": {
+        "embroidery": 1.8,
+        "print": 0.8
+      },
+      "Right Chest": {
+        "embroidery": 1.8,
+        "print": 0.8
+      },
+      "Front Centre": {
+        "embroidery": 1.8,
+        "print": 0.8
+      },
+      "Front Chest": {
+        "embroidery": 1.8,
+        "print": 0.8
+      },
+      "Back": {
+        "embroidery": 2.5,
+        "print": 1.25
+      },
+      "Left Shoulder": {
+        "embroidery": 0.75,
+        "print": 0.5
+      },
+      "Right Shoulder": {
+        "embroidery": 0.75,
+        "print": 0.5
+      }
     },
     "decorationSellPrices": {
-      "Left Chest":   { "embroidery": 3.50, "print": 1.67 },
-      "Right Chest":  { "embroidery": 3.50, "print": 1.67 },
-      "Front Centre": { "embroidery": 3.50, "print": 1.67 },
-      "Front Chest":  { "embroidery": 3.50, "print": 1.67 },
-      "Back":         { "embroidery": 5.00, "print": 2.50 },
-      "Left Shoulder":  { "embroidery": 1.50, "print": 1.00 },
-      "Right Shoulder": { "embroidery": 1.50, "print": 1.00 }
+      "Left Chest": {
+        "embroidery": 3.5,
+        "print": 1.67
+      },
+      "Right Chest": {
+        "embroidery": 3.5,
+        "print": 1.67
+      },
+      "Front Centre": {
+        "embroidery": 3.5,
+        "print": 1.67
+      },
+      "Front Chest": {
+        "embroidery": 3.5,
+        "print": 1.67
+      },
+      "Back": {
+        "embroidery": 5.0,
+        "print": 2.5
+      },
+      "Left Shoulder": {
+        "embroidery": 1.5,
+        "print": 1.0
+      },
+      "Right Shoulder": {
+        "embroidery": 1.5,
+        "print": 1.0
+      }
     },
-    "brandingPositions": ["Left Chest", "Right Chest", "Front Centre", "Front Chest", "Back", "Left Shoulder", "Right Shoulder"],
-    "sizes": ["XS", "S", "M", "L", "XL", "XXL"],
+    "brandingPositions": [
+      "Left Chest",
+      "Right Chest",
+      "Front Centre",
+      "Front Chest",
+      "Back",
+      "Left Shoulder",
+      "Right Shoulder"
+    ],
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
     "active": true,
     "volumeTiers": [
-      { "min": 10,  "max": 24,     "price": 12.99 },
-      { "min": 25,  "max": 49,     "price": 11.99 },
-      { "min": 50,  "max": 99,     "price": 10.99 },
-      { "min": 100, "max": 249,    "price": 10.49 },
-      { "min": 250, "max": 999999, "price":  9.99 }
+      {
+        "min": 10,
+        "max": 24,
+        "price": 12.99
+      },
+      {
+        "min": 25,
+        "max": 49,
+        "price": 11.99
+      },
+      {
+        "min": 50,
+        "max": 99,
+        "price": 10.99
+      },
+      {
+        "min": 100,
+        "max": 249,
+        "price": 10.49
+      },
+      {
+        "min": 250,
+        "max": 999999,
+        "price": 9.99
+      }
     ],
     "updatedAt": "2024-01-01T00:00:00.000Z"
   },
@@ -78,24 +232,68 @@
     "garmentCost": 4.83,
     "garmentSellPrice": 6.99,
     "decorationCosts": {
-      "Front":  { "embroidery": 1.50, "print": 0.75 },
-      "Left Side":  { "embroidery": 1.00, "print": 0.60 },
-      "Right Side": { "embroidery": 1.00, "print": 0.60 }
+      "Front": {
+        "embroidery": 1.5,
+        "print": 0.75
+      },
+      "Left Side": {
+        "embroidery": 1.0,
+        "print": 0.6
+      },
+      "Right Side": {
+        "embroidery": 1.0,
+        "print": 0.6
+      }
     },
     "decorationSellPrices": {
-      "Front":  { "embroidery": 3.00, "print": 1.50 },
-      "Left Side":  { "embroidery": 2.00, "print": 1.00 },
-      "Right Side": { "embroidery": 2.00, "print": 1.00 }
+      "Front": {
+        "embroidery": 3.0,
+        "print": 1.5
+      },
+      "Left Side": {
+        "embroidery": 2.0,
+        "print": 1.0
+      },
+      "Right Side": {
+        "embroidery": 2.0,
+        "print": 1.0
+      }
     },
-    "brandingPositions": ["Front", "Left Side", "Right Side"],
-    "sizes": ["One Size"],
+    "brandingPositions": [
+      "Front",
+      "Left Side",
+      "Right Side"
+    ],
+    "sizes": [
+      "One Size"
+    ],
     "active": true,
     "volumeTiers": [
-      { "min": 10,  "max": 24,     "price": 6.99 },
-      { "min": 25,  "max": 49,     "price": 6.49 },
-      { "min": 50,  "max": 99,     "price": 5.99 },
-      { "min": 100, "max": 249,    "price": 5.49 },
-      { "min": 250, "max": 999999, "price": 5.19 }
+      {
+        "min": 10,
+        "max": 24,
+        "price": 6.99
+      },
+      {
+        "min": 25,
+        "max": 49,
+        "price": 6.49
+      },
+      {
+        "min": 50,
+        "max": 99,
+        "price": 5.99
+      },
+      {
+        "min": 100,
+        "max": 249,
+        "price": 5.49
+      },
+      {
+        "min": 250,
+        "max": 999999,
+        "price": 5.19
+      }
     ],
     "updatedAt": "2024-01-01T00:00:00.000Z"
   },
@@ -106,26 +304,77 @@
     "garmentCost": 5.21,
     "garmentSellPrice": 7.99,
     "decorationCosts": {
-      "Front Panel": { "embroidery": 1.80, "print": 0.90 },
-      "Left Side":   { "embroidery": 1.00, "print": 0.60 },
-      "Right Side":  { "embroidery": 1.00, "print": 0.60 },
-      "Back":        { "embroidery": 1.00, "print": 0.60 }
+      "Front Panel": {
+        "embroidery": 1.8,
+        "print": 0.9
+      },
+      "Left Side": {
+        "embroidery": 1.0,
+        "print": 0.6
+      },
+      "Right Side": {
+        "embroidery": 1.0,
+        "print": 0.6
+      },
+      "Back": {
+        "embroidery": 1.0,
+        "print": 0.6
+      }
     },
     "decorationSellPrices": {
-      "Front Panel": { "embroidery": 3.50, "print": 1.75 },
-      "Left Side":   { "embroidery": 2.00, "print": 1.00 },
-      "Right Side":  { "embroidery": 2.00, "print": 1.00 },
-      "Back":        { "embroidery": 2.00, "print": 1.00 }
+      "Front Panel": {
+        "embroidery": 3.5,
+        "print": 1.75
+      },
+      "Left Side": {
+        "embroidery": 2.0,
+        "print": 1.0
+      },
+      "Right Side": {
+        "embroidery": 2.0,
+        "print": 1.0
+      },
+      "Back": {
+        "embroidery": 2.0,
+        "print": 1.0
+      }
     },
-    "brandingPositions": ["Front Panel", "Left Side", "Right Side", "Back"],
-    "sizes": ["One Size"],
+    "brandingPositions": [
+      "Front Panel",
+      "Left Side",
+      "Right Side",
+      "Back"
+    ],
+    "sizes": [
+      "One Size"
+    ],
     "active": true,
     "volumeTiers": [
-      { "min": 10,  "max": 24,     "price": 7.99 },
-      { "min": 25,  "max": 49,     "price": 7.49 },
-      { "min": 50,  "max": 99,     "price": 6.99 },
-      { "min": 100, "max": 249,    "price": 6.49 },
-      { "min": 250, "max": 999999, "price": 5.99 }
+      {
+        "min": 10,
+        "max": 24,
+        "price": 7.99
+      },
+      {
+        "min": 25,
+        "max": 49,
+        "price": 7.49
+      },
+      {
+        "min": 50,
+        "max": 99,
+        "price": 6.99
+      },
+      {
+        "min": 100,
+        "max": 249,
+        "price": 6.49
+      },
+      {
+        "min": 250,
+        "max": 999999,
+        "price": 5.99
+      }
     ],
     "updatedAt": "2024-01-01T00:00:00.000Z"
   },
@@ -136,28 +385,91 @@
     "garmentCost": 20.43,
     "garmentSellPrice": 26.99,
     "decorationCosts": {
-      "Left Chest":   { "embroidery": 1.80, "print": 0.80 },
-      "Right Chest":  { "embroidery": 1.80, "print": 0.80 },
-      "Back":         { "embroidery": 2.50, "print": 1.25 },
-      "Left Shoulder":  { "embroidery": 0.75, "print": 0.50 },
-      "Right Shoulder": { "embroidery": 0.75, "print": 0.50 }
+      "Left Chest": {
+        "embroidery": 1.8,
+        "print": 0.8
+      },
+      "Right Chest": {
+        "embroidery": 1.8,
+        "print": 0.8
+      },
+      "Back": {
+        "embroidery": 2.5,
+        "print": 1.25
+      },
+      "Left Shoulder": {
+        "embroidery": 0.75,
+        "print": 0.5
+      },
+      "Right Shoulder": {
+        "embroidery": 0.75,
+        "print": 0.5
+      }
     },
     "decorationSellPrices": {
-      "Left Chest":   { "embroidery": 3.50, "print": 1.67 },
-      "Right Chest":  { "embroidery": 3.50, "print": 1.67 },
-      "Back":         { "embroidery": 5.00, "print": 2.50 },
-      "Left Shoulder":  { "embroidery": 1.50, "print": 1.00 },
-      "Right Shoulder": { "embroidery": 1.50, "print": 1.00 }
+      "Left Chest": {
+        "embroidery": 3.5,
+        "print": 1.67
+      },
+      "Right Chest": {
+        "embroidery": 3.5,
+        "print": 1.67
+      },
+      "Back": {
+        "embroidery": 5.0,
+        "print": 2.5
+      },
+      "Left Shoulder": {
+        "embroidery": 1.5,
+        "print": 1.0
+      },
+      "Right Shoulder": {
+        "embroidery": 1.5,
+        "print": 1.0
+      }
     },
-    "brandingPositions": ["Left Chest", "Right Chest", "Back", "Left Shoulder", "Right Shoulder"],
-    "sizes": ["XS", "S", "M", "L", "XL", "XXL"],
+    "brandingPositions": [
+      "Left Chest",
+      "Right Chest",
+      "Back",
+      "Left Shoulder",
+      "Right Shoulder"
+    ],
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
     "active": true,
     "volumeTiers": [
-      { "min": 10,  "max": 24,     "price": 26.99 },
-      { "min": 25,  "max": 49,     "price": 25.49 },
-      { "min": 50,  "max": 99,     "price": 23.99 },
-      { "min": 100, "max": 249,    "price": 22.49 },
-      { "min": 250, "max": 999999, "price": 21.49 }
+      {
+        "min": 10,
+        "max": 24,
+        "price": 26.99
+      },
+      {
+        "min": 25,
+        "max": 49,
+        "price": 25.49
+      },
+      {
+        "min": 50,
+        "max": 99,
+        "price": 23.99
+      },
+      {
+        "min": 100,
+        "max": 249,
+        "price": 22.49
+      },
+      {
+        "min": 250,
+        "max": 999999,
+        "price": 21.49
+      }
     ],
     "updatedAt": "2024-01-01T00:00:00.000Z"
   },
@@ -165,34 +477,651 @@
     "code": "ELV-006",
     "name": "Premium Workwear 1/4 Zip",
     "category": "Quarter Zips",
-    "garmentCost": 18.00,
+    "garmentCost": 18.0,
     "garmentSellPrice": 24.99,
     "decorationCosts": {
-      "Left Chest":   { "embroidery": 1.80, "print": 0.80 },
-      "Right Chest":  { "embroidery": 1.80, "print": 0.80 },
-      "Front Centre": { "embroidery": 1.80, "print": 0.80 },
-      "Back":         { "embroidery": 2.50, "print": 1.25 },
-      "Left Shoulder":  { "embroidery": 0.75, "print": 0.50 },
-      "Right Shoulder": { "embroidery": 0.75, "print": 0.50 }
+      "Left Chest": {
+        "embroidery": 1.8,
+        "print": 0.8
+      },
+      "Right Chest": {
+        "embroidery": 1.8,
+        "print": 0.8
+      },
+      "Front Centre": {
+        "embroidery": 1.8,
+        "print": 0.8
+      },
+      "Back": {
+        "embroidery": 2.5,
+        "print": 1.25
+      },
+      "Left Shoulder": {
+        "embroidery": 0.75,
+        "print": 0.5
+      },
+      "Right Shoulder": {
+        "embroidery": 0.75,
+        "print": 0.5
+      }
     },
     "decorationSellPrices": {
-      "Left Chest":   { "embroidery": 3.50, "print": 1.67 },
-      "Right Chest":  { "embroidery": 3.50, "print": 1.67 },
-      "Front Centre": { "embroidery": 3.50, "print": 1.67 },
-      "Back":         { "embroidery": 5.00, "print": 2.50 },
-      "Left Shoulder":  { "embroidery": 1.50, "print": 1.00 },
-      "Right Shoulder": { "embroidery": 1.50, "print": 1.00 }
+      "Left Chest": {
+        "embroidery": 3.5,
+        "print": 1.67
+      },
+      "Right Chest": {
+        "embroidery": 3.5,
+        "print": 1.67
+      },
+      "Front Centre": {
+        "embroidery": 3.5,
+        "print": 1.67
+      },
+      "Back": {
+        "embroidery": 5.0,
+        "print": 2.5
+      },
+      "Left Shoulder": {
+        "embroidery": 1.5,
+        "print": 1.0
+      },
+      "Right Shoulder": {
+        "embroidery": 1.5,
+        "print": 1.0
+      }
     },
-    "brandingPositions": ["Left Chest", "Right Chest", "Front Centre", "Back", "Left Shoulder", "Right Shoulder"],
-    "sizes": ["XS", "S", "M", "L", "XL", "XXL"],
+    "brandingPositions": [
+      "Left Chest",
+      "Right Chest",
+      "Front Centre",
+      "Back",
+      "Left Shoulder",
+      "Right Shoulder"
+    ],
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
     "active": true,
     "volumeTiers": [
-      { "min": 10,  "max": 24,     "price": 24.99 },
-      { "min": 25,  "max": 49,     "price": 23.99 },
-      { "min": 50,  "max": 99,     "price": 22.99 },
-      { "min": 100, "max": 249,    "price": 21.49 },
-      { "min": 250, "max": 999999, "price": 19.99 }
+      {
+        "min": 10,
+        "max": 24,
+        "price": 24.99
+      },
+      {
+        "min": 25,
+        "max": 49,
+        "price": 23.99
+      },
+      {
+        "min": 50,
+        "max": 99,
+        "price": 22.99
+      },
+      {
+        "min": 100,
+        "max": 249,
+        "price": 21.49
+      },
+      {
+        "min": 250,
+        "max": 999999,
+        "price": 19.99
+      }
     ],
     "updatedAt": "2024-01-01T00:00:00.000Z"
+  },
+  {
+    "code": "ELV-007",
+    "name": "Hi-Vis Padded Jacket",
+    "category": "PPE & Safety Wear",
+    "garmentCost": 23.75,
+    "garmentSellPrice": 32.99,
+    "decorationCosts": {
+      "Left Chest": {
+        "embroidery": 1.8,
+        "print": 0.8
+      },
+      "Right Chest": {
+        "embroidery": 1.8,
+        "print": 0.8
+      },
+      "Front Centre": {
+        "embroidery": 1.8,
+        "print": 0.8
+      },
+      "Back": {
+        "embroidery": 2.5,
+        "print": 1.25
+      },
+      "Left Shoulder": {
+        "embroidery": 0.75,
+        "print": 0.5
+      },
+      "Right Shoulder": {
+        "embroidery": 0.75,
+        "print": 0.5
+      }
+    },
+    "decorationSellPrices": {
+      "Left Chest": {
+        "embroidery": 3.5,
+        "print": 1.67
+      },
+      "Right Chest": {
+        "embroidery": 3.5,
+        "print": 1.67
+      },
+      "Front Centre": {
+        "embroidery": 3.5,
+        "print": 1.67
+      },
+      "Back": {
+        "embroidery": 5.0,
+        "print": 2.5
+      },
+      "Left Shoulder": {
+        "embroidery": 1.5,
+        "print": 1.0
+      },
+      "Right Shoulder": {
+        "embroidery": 1.5,
+        "print": 1.0
+      }
+    },
+    "brandingPositions": [
+      "Left Chest",
+      "Right Chest",
+      "Front Centre",
+      "Back",
+      "Left Shoulder",
+      "Right Shoulder"
+    ],
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "active": true,
+    "volumeTiers": [
+      {
+        "min": 10,
+        "max": 24,
+        "price": 32.99
+      },
+      {
+        "min": 25,
+        "max": 49,
+        "price": 31.49
+      },
+      {
+        "min": 50,
+        "max": 99,
+        "price": 29.99
+      },
+      {
+        "min": 100,
+        "max": 249,
+        "price": 27.99
+      },
+      {
+        "min": 250,
+        "max": 999999,
+        "price": 25.99
+      }
+    ],
+    "updatedAt": "2026-07-12T00:00:00.000Z"
+  },
+  {
+    "code": "ELV-008",
+    "name": "Hi-Vis Safety Vest",
+    "category": "PPE & Safety Wear",
+    "garmentCost": 10.79,
+    "garmentSellPrice": 14.99,
+    "decorationCosts": {
+      "Left Chest": {
+        "embroidery": 1.8,
+        "print": 0.8
+      },
+      "Right Chest": {
+        "embroidery": 1.8,
+        "print": 0.8
+      },
+      "Front Centre": {
+        "embroidery": 1.8,
+        "print": 0.8
+      },
+      "Back": {
+        "embroidery": 2.5,
+        "print": 1.25
+      }
+    },
+    "decorationSellPrices": {
+      "Left Chest": {
+        "embroidery": 3.5,
+        "print": 1.67
+      },
+      "Right Chest": {
+        "embroidery": 3.5,
+        "print": 1.67
+      },
+      "Front Centre": {
+        "embroidery": 3.5,
+        "print": 1.67
+      },
+      "Back": {
+        "embroidery": 5.0,
+        "print": 2.5
+      }
+    },
+    "brandingPositions": [
+      "Left Chest",
+      "Right Chest",
+      "Front Centre",
+      "Back"
+    ],
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "active": true,
+    "volumeTiers": [
+      {
+        "min": 10,
+        "max": 24,
+        "price": 14.99
+      },
+      {
+        "min": 25,
+        "max": 49,
+        "price": 13.99
+      },
+      {
+        "min": 50,
+        "max": 99,
+        "price": 12.99
+      },
+      {
+        "min": 100,
+        "max": 249,
+        "price": 11.99
+      },
+      {
+        "min": 250,
+        "max": 999999,
+        "price": 10.99
+      }
+    ],
+    "updatedAt": "2026-07-12T00:00:00.000Z"
+  },
+  {
+    "code": "ELV-009",
+    "name": "Workwear Apron",
+    "category": "Hospitality Wear",
+    "garmentCost": 7.19,
+    "garmentSellPrice": 9.99,
+    "decorationCosts": {
+      "Front Centre": {
+        "embroidery": 1.8,
+        "print": 0.8
+      }
+    },
+    "decorationSellPrices": {
+      "Front Centre": {
+        "embroidery": 3.5,
+        "print": 1.67
+      }
+    },
+    "brandingPositions": [
+      "Front Centre"
+    ],
+    "sizes": [
+      "One Size"
+    ],
+    "active": true,
+    "volumeTiers": [
+      {
+        "min": 10,
+        "max": 24,
+        "price": 9.99
+      },
+      {
+        "min": 25,
+        "max": 49,
+        "price": 9.49
+      },
+      {
+        "min": 50,
+        "max": 99,
+        "price": 8.99
+      },
+      {
+        "min": 100,
+        "max": 249,
+        "price": 8.49
+      },
+      {
+        "min": 250,
+        "max": 999999,
+        "price": 7.99
+      }
+    ],
+    "updatedAt": "2026-07-12T00:00:00.000Z"
+  },
+  {
+    "code": "ELV-010",
+    "name": "Workwear Tabard",
+    "category": "Hospitality Wear",
+    "garmentCost": 6.47,
+    "garmentSellPrice": 8.99,
+    "decorationCosts": {
+      "Front Centre": {
+        "embroidery": 1.8,
+        "print": 0.8
+      }
+    },
+    "decorationSellPrices": {
+      "Front Centre": {
+        "embroidery": 3.5,
+        "print": 1.67
+      }
+    },
+    "brandingPositions": [
+      "Front Centre"
+    ],
+    "sizes": [
+      "One Size"
+    ],
+    "active": true,
+    "volumeTiers": [
+      {
+        "min": 10,
+        "max": 24,
+        "price": 8.99
+      },
+      {
+        "min": 25,
+        "max": 49,
+        "price": 8.49
+      },
+      {
+        "min": 50,
+        "max": 99,
+        "price": 7.99
+      },
+      {
+        "min": 100,
+        "max": 249,
+        "price": 7.49
+      },
+      {
+        "min": 250,
+        "max": 999999,
+        "price": 6.99
+      }
+    ],
+    "updatedAt": "2026-07-12T00:00:00.000Z"
+  },
+  {
+    "code": "ELV-011",
+    "name": "Premium Workwear T-Shirt",
+    "category": "Casualwear",
+    "garmentCost": 6.47,
+    "garmentSellPrice": 8.99,
+    "decorationCosts": {
+      "Left Chest": {
+        "embroidery": 1.8,
+        "print": 0.8
+      },
+      "Right Chest": {
+        "embroidery": 1.8,
+        "print": 0.8
+      },
+      "Front Centre": {
+        "embroidery": 1.8,
+        "print": 0.8
+      },
+      "Back": {
+        "embroidery": 2.5,
+        "print": 1.25
+      },
+      "Left Shoulder": {
+        "embroidery": 0.75,
+        "print": 0.5
+      },
+      "Right Shoulder": {
+        "embroidery": 0.75,
+        "print": 0.5
+      }
+    },
+    "decorationSellPrices": {
+      "Left Chest": {
+        "embroidery": 3.5,
+        "print": 1.67
+      },
+      "Right Chest": {
+        "embroidery": 3.5,
+        "print": 1.67
+      },
+      "Front Centre": {
+        "embroidery": 3.5,
+        "print": 1.67
+      },
+      "Back": {
+        "embroidery": 5.0,
+        "print": 2.5
+      },
+      "Left Shoulder": {
+        "embroidery": 1.5,
+        "print": 1.0
+      },
+      "Right Shoulder": {
+        "embroidery": 1.5,
+        "print": 1.0
+      }
+    },
+    "brandingPositions": [
+      "Left Chest",
+      "Right Chest",
+      "Front Centre",
+      "Back",
+      "Left Shoulder",
+      "Right Shoulder"
+    ],
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "active": true,
+    "volumeTiers": [
+      {
+        "min": 10,
+        "max": 24,
+        "price": 8.99
+      },
+      {
+        "min": 25,
+        "max": 49,
+        "price": 8.49
+      },
+      {
+        "min": 50,
+        "max": 99,
+        "price": 7.99
+      },
+      {
+        "min": 100,
+        "max": 249,
+        "price": 7.49
+      },
+      {
+        "min": 250,
+        "max": 999999,
+        "price": 6.99
+      }
+    ],
+    "updatedAt": "2026-07-12T00:00:00.000Z"
+  },
+  {
+    "code": "ELV-012",
+    "name": "Padded Bodywarmer Gilet",
+    "category": "Outerwear",
+    "garmentCost": 20.43,
+    "garmentSellPrice": 26.99,
+    "decorationCosts": {
+      "Left Chest": {
+        "embroidery": 1.8,
+        "print": 0.8
+      },
+      "Right Chest": {
+        "embroidery": 1.8,
+        "print": 0.8
+      },
+      "Front Centre": {
+        "embroidery": 1.8,
+        "print": 0.8
+      },
+      "Back": {
+        "embroidery": 2.5,
+        "print": 1.25
+      }
+    },
+    "decorationSellPrices": {
+      "Left Chest": {
+        "embroidery": 3.5,
+        "print": 1.67
+      },
+      "Right Chest": {
+        "embroidery": 3.5,
+        "print": 1.67
+      },
+      "Front Centre": {
+        "embroidery": 3.5,
+        "print": 1.67
+      },
+      "Back": {
+        "embroidery": 5.0,
+        "print": 2.5
+      }
+    },
+    "brandingPositions": [
+      "Left Chest",
+      "Right Chest",
+      "Front Centre",
+      "Back"
+    ],
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "active": true,
+    "volumeTiers": [
+      {
+        "min": 10,
+        "max": 24,
+        "price": 26.99
+      },
+      {
+        "min": 25,
+        "max": 49,
+        "price": 25.49
+      },
+      {
+        "min": 50,
+        "max": 99,
+        "price": 23.99
+      },
+      {
+        "min": 100,
+        "max": 249,
+        "price": 22.49
+      },
+      {
+        "min": 250,
+        "max": 999999,
+        "price": 21.49
+      }
+    ],
+    "updatedAt": "2026-07-12T00:00:00.000Z"
+  },
+  {
+    "code": "ELV-013",
+    "name": "Workwear Cargo Pants",
+    "category": "PPE & Safety Wear",
+    "garmentCost": 20.87,
+    "garmentSellPrice": 28.99,
+    "decorationCosts": {
+      "Left Leg": {
+        "embroidery": 1.8,
+        "print": 0.8
+      }
+    },
+    "decorationSellPrices": {
+      "Left Leg": {
+        "embroidery": 3.5,
+        "print": 1.67
+      }
+    },
+    "brandingPositions": [
+      "Left Leg"
+    ],
+    "sizes": [
+      "XS",
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "active": true,
+    "volumeTiers": [
+      {
+        "min": 10,
+        "max": 24,
+        "price": 28.99
+      },
+      {
+        "min": 25,
+        "max": 49,
+        "price": 27.49
+      },
+      {
+        "min": 50,
+        "max": 99,
+        "price": 25.99
+      },
+      {
+        "min": 100,
+        "max": 249,
+        "price": 24.49
+      },
+      {
+        "min": 250,
+        "max": 999999,
+        "price": 22.99
+      }
+    ],
+    "updatedAt": "2026-07-12T00:00:00.000Z"
   }
 ]

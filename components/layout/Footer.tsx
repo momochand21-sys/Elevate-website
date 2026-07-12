@@ -97,6 +97,9 @@ export default function Footer() {
                     "1/4 Zips": "/products/quarter-zip/workwear-quarter-zip",
                     "Caps & Beanies": "/products/caps-beanies/workwear-beanie",
                     "Size Guide": "/faq#sizing",
+                    "Delivery Info": "/faq#production-delivery",
+                    "Returns Policy": "/faq#returns-refunds",
+                    "info@elevateworkwear.com": "mailto:info@elevateworkwear.com",
                   };
                   const href = hrefMap[link] ?? "#";
                   return (

@@ -9,6 +9,13 @@ export const PRODUCT_META: Record<string, { code: ProductCode; href: string }> =
   "Premium Workwear Cap":     { code:"ELV-004", href:"/products/caps-beanies/workwear-cap" },
   "Premium Workwear Gilet":   { code:"ELV-005", href:"/products/gilets/workwear-gilet" },
   "Premium Workwear 1/4 Zip": { code:"ELV-006", href:"/products/quarter-zip/workwear-quarter-zip" },
+  "Hi-Vis Padded Jacket":     { code:"ELV-007", href:"/products/ppe/hi-vis-jacket" },
+  "Hi-Vis Safety Vest":       { code:"ELV-008", href:"/products/ppe/hi-vis-vest" },
+  "Workwear Apron":          { code:"ELV-009", href:"/products/hospitality/apron" },
+  "Workwear Tabard":         { code:"ELV-010", href:"/products/hospitality/tabard" },
+  "Premium Workwear T-Shirt": { code:"ELV-011", href:"/products/t-shirts/workwear-tshirt" },
+  "Padded Bodywarmer Gilet":  { code:"ELV-012", href:"/products/gilets/padded-gilet" },
+  "Workwear Cargo Pants":     { code:"ELV-013", href:"/products/ppe/workwear-pants" },
 };
 
 /** Build basket items from a portal Order's items[] array using correct product pricing */

@@ -46,7 +46,7 @@ export default function CTA() {
       <div className="relative max-w-[1400px] mx-auto px-6 md:px-12 py-24 md:py-40">
         <div className="flex flex-col items-center text-center max-w-[900px] mx-auto">
           <FadeUp>
-            <div className="section-label mb-8 justify-center">/ 05 Get Started</div>
+            <div className="section-label mb-8 justify-center">Get Started</div>
           </FadeUp>
 
           {/* Main heading */}

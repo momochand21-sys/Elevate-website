@@ -95,11 +95,11 @@ export default function BeanieDetailPage() {
 
           {/* ── LEFT: viewer + specs ── */}
           <div className="flex flex-col gap-10">
-            <div
-              className="w-full lg:sticky"
-              style={{ top: "88px", aspectRatio: "1200/1400", maxHeight: "90vh", width: "100%" }}
-            >
-              <BeanieViewer360 />
+            <div className="relative w-full lg:sticky" style={{ top: "88px", width: "100%", maxWidth: "min(460px, calc(65vh * 1200 / 1400))", margin: "0 auto" }}>
+              <div style={{ paddingBottom: "116.67%" }} />
+              <div className="absolute inset-0">
+                <BeanieViewer360 />
+              </div>
             </div>
             <div className="hidden lg:block">
               <SpecsTable />

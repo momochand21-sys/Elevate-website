@@ -63,7 +63,7 @@ export default function WhyUs() {
           {/* Left */}
           <div>
             <FadeUp>
-              <div className="section-label mb-8">/ 04 Why Elevate</div>
+              <div className="section-label mb-8">/ 03 Why Elevate</div>
             </FadeUp>
 
             <h2
