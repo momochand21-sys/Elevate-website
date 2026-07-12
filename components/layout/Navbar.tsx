@@ -19,10 +19,10 @@ interface NavLink {
   label:    string;
   href:     string;
   dropdown?: DropdownItem[];
+  action?:  "book-call";
 }
 
 const navLinks: NavLink[] = [
-  { label: "About",    href: "#about"    },
   {
     label: "Products",
     href:  "/products",
@@ -36,8 +36,10 @@ const navLinks: NavLink[] = [
       { label: "Hospitality Wear",     href: "/products#hospitality"   },
     ],
   },
-  { label: "Services", href: "#services" },
+  { label: "Book a Call", href: "", action: "book-call" },
   { label: "Results",  href: "/our-work" },
+  { label: "About",    href: "#about"    },
+  { label: "Services", href: "#services" },
   { label: "Why Us",   href: "#why-us"   },
   { label: "FAQ",      href: "/faq"       },
 ];
@@ -133,6 +135,18 @@ export default function Navbar() {
     }
   };
 
+  /* ── Click handler for top-level nav items — some open the booking modal instead of routing ── */
+  const handleLinkClick = (link: NavLink) => {
+    if (link.action === "book-call") {
+      setMobileOpen(false);
+      setMobileProductsOpen(false);
+      setActiveDropdown(null);
+      setBookOpen(true);
+      return;
+    }
+    navigate(link.href);
+  };
+
   /* ── Dropdown hover handlers with delay to prevent flickering ── */
   const showDropdown = (label: string) => {
     if (hideTimeout.current) clearTimeout(hideTimeout.current);
@@ -183,7 +197,7 @@ export default function Navbar() {
                 onMouseLeave={() => link.dropdown && scheduleHide()}
               >
                 <button
-                  onClick={() => navigate(link.href)}
+                  onClick={() => handleLinkClick(link)}
                   className="animated-underline font-mono text-[10px] tracking-[0.18em] uppercase text-muted hover:text-off-white transition-colors duration-300 cursor-pointer flex items-center gap-1.5"
                 >
                   {link.label}
@@ -318,10 +332,10 @@ export default function Navbar() {
                     <div>
                       <button
                         onClick={() => setMobileProductsOpen(v => !v)}
-                        className="w-full flex items-center justify-between py-4 border-b border-white/[0.05] text-off-white/50 hover:text-off-white transition-colors"
+                        className="w-full flex items-center justify-between py-3 border-b border-white/[0.05] text-off-white/50 hover:text-off-white transition-colors"
                         style={{
                           fontFamily: "var(--font-bebas,'Bebas Neue')",
-                          fontSize: "clamp(3rem,10vw,5.5rem)",
+                          fontSize: "clamp(1.6rem,6vw,2.2rem)",
                           letterSpacing: "0.04em",
                           lineHeight: 1,
                         }}
@@ -330,8 +344,8 @@ export default function Navbar() {
                         <motion.span
                           animate={{ rotate: mobileProductsOpen ? 45 : 0 }}
                           transition={{ duration: 0.25 }}
-                          className="text-2xl text-blue/70 ml-4 flex-shrink-0"
-                          style={{ fontFamily: "sans-serif", fontSize: "2rem", lineHeight: 1 }}
+                          className="text-blue/70 ml-4 flex-shrink-0"
+                          style={{ fontFamily: "sans-serif", fontSize: "1.3rem", lineHeight: 1 }}
                         >
                           +
                         </motion.span>
@@ -376,11 +390,11 @@ export default function Navbar() {
                   ) : (
                     /* ── Regular link ── */
                     <button
-                      onClick={() => navigate(link.href)}
-                      className="w-full text-left py-4 border-b border-white/[0.05] text-off-white/50 hover:text-off-white transition-colors"
+                      onClick={() => handleLinkClick(link)}
+                      className="w-full text-left py-3 border-b border-white/[0.05] text-off-white/50 hover:text-off-white transition-colors"
                       style={{
                         fontFamily: "var(--font-bebas,'Bebas Neue')",
-                        fontSize: "clamp(3rem,10vw,5.5rem)",
+                        fontSize: "clamp(1.6rem,6vw,2.2rem)",
                         letterSpacing: "0.04em",
                         lineHeight: 1,
                       }}
@@ -395,8 +409,8 @@ export default function Navbar() {
                 initial={{ x: -40, opacity: 0 }}
                 animate={{ x: 0,   opacity: 1 }}
                 exit={{    x: -40, opacity: 0 }}
-                transition={{ delay: 0.44, ease: [0.16, 1, 0.3, 1], duration: 0.6 }}
-                className="mt-8 flex flex-col sm:flex-row gap-3"
+                transition={{ delay: 0.1 + navLinks.length * 0.07, ease: [0.16, 1, 0.3, 1], duration: 0.6 }}
+                className="mt-8"
               >
                 <button
                   onClick={() => navigate("#cta")}
@@ -405,16 +419,6 @@ export default function Navbar() {
                   Get a Quote
                   <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
                     <path d="M2 7H12M7 2L12 7L7 12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                  </svg>
-                </button>
-                <button
-                  onClick={() => { setMobileOpen(false); setBookOpen(true); }}
-                  className="inline-flex items-center justify-center gap-3 border border-white/15 text-off-white font-mono text-sm tracking-[0.14em] uppercase px-8 py-4"
-                >
-                  Book a Call
-                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-                    <path d="M7 1C3.686 1 1 3.686 1 7s2.686 6 6 6 6-2.686 6-6-2.686-6-6-6z" stroke="currentColor" strokeWidth="1.3" />
-                    <path d="M7 4v4l2 2" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" />
                   </svg>
                 </button>
               </motion.div>
