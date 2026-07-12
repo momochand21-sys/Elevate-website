@@ -105,7 +105,7 @@ export default function Navbar() {
 
   const [scrolled,          setScrolled]          = useState(false);
   const [mobileOpen,        setMobileOpen]         = useState(false);
-  const [mobileProductsOpen, setMobileProductsOpen] = useState(false);
+  const [mobileView,        setMobileView]         = useState<"main" | "products">("main");
   const [activeDropdown,    setActiveDropdown]     = useState<string | null>(null);
   const [bookOpen,          setBookOpen]           = useState(false);
   const hideTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -120,7 +120,7 @@ export default function Navbar() {
   /* ── Navigation helper ── */
   const navigate = (href: string) => {
     setMobileOpen(false);
-    setMobileProductsOpen(false);
+    setMobileView("main");
     setActiveDropdown(null);
 
     if (href.startsWith("/")) {
@@ -139,7 +139,7 @@ export default function Navbar() {
   const handleLinkClick = (link: NavLink) => {
     if (link.action === "book-call") {
       setMobileOpen(false);
-      setMobileProductsOpen(false);
+      setMobileView("main");
       setActiveDropdown(null);
       setBookOpen(true);
       return;
@@ -231,10 +231,36 @@ export default function Navbar() {
           </nav>
 
           {/* Right actions */}
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2 md:gap-4">
             <Link href="/portal" className="hidden lg:block font-mono text-[9px] tracking-[0.18em] uppercase text-muted hover:text-off-white transition-colors duration-200 cursor-pointer">
               Client Portal
             </Link>
+
+            {/* Mobile-only quick actions — Products & Book a Call, always visible without opening the menu */}
+            <button
+              onClick={() => navigate("/products")}
+              className="lg:hidden flex items-center justify-center cursor-pointer"
+              style={{ width: 34, height: 34 }}
+              aria-label="Products"
+            >
+              <svg width="17" height="17" viewBox="0 0 18 18" fill="none">
+                <rect x="2" y="2" width="6" height="6" stroke="rgba(245,245,243,0.6)" strokeWidth="1.3"/>
+                <rect x="10" y="2" width="6" height="6" stroke="rgba(245,245,243,0.6)" strokeWidth="1.3"/>
+                <rect x="2" y="10" width="6" height="6" stroke="rgba(245,245,243,0.6)" strokeWidth="1.3"/>
+                <rect x="10" y="10" width="6" height="6" stroke="rgba(245,245,243,0.6)" strokeWidth="1.3"/>
+              </svg>
+            </button>
+            <button
+              onClick={() => setBookOpen(true)}
+              className="lg:hidden flex items-center justify-center cursor-pointer"
+              style={{ width: 34, height: 34 }}
+              aria-label="Book a call"
+            >
+              <svg width="17" height="17" viewBox="0 0 14 14" fill="none">
+                <path d="M7 1C3.686 1 1 3.686 1 7s2.686 6 6 6 6-2.686 6-6-2.686-6-6-6z" stroke="rgba(245,245,243,0.6)" strokeWidth="1.3" />
+                <path d="M7 4v4l2 2" stroke="rgba(245,245,243,0.6)" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </button>
 
             {/* Basket icon */}
             <button
@@ -292,7 +318,7 @@ export default function Navbar() {
 
             {/* Mobile hamburger */}
             <button
-              onClick={() => setMobileOpen(!mobileOpen)}
+              onClick={() => { setMobileOpen(v => !v); setMobileView("main"); }}
               className="lg:hidden flex flex-col gap-[5px] p-2 cursor-pointer"
               aria-label="Toggle menu"
             >
@@ -318,111 +344,121 @@ export default function Navbar() {
           >
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 orb orb-blue opacity-20 animate-pulse-glow"/>
 
-            <nav className="flex flex-col gap-1">
-              {navLinks.map((link, i) => (
-                <motion.div
-                  key={link.label}
-                  initial={{ x: -40, opacity: 0 }}
+            <div style={{ overflow: "hidden" }}>
+            <AnimatePresence mode="wait" initial={false}>
+              {mobileView === "main" ? (
+                <motion.nav
+                  key="main"
+                  initial={{ x: -60, opacity: 0 }}
                   animate={{ x: 0,   opacity: 1 }}
-                  exit={{    x: -40, opacity: 0 }}
-                  transition={{ delay: 0.1 + i * 0.07, ease: [0.16, 1, 0.3, 1], duration: 0.6 }}
+                  exit={{    x: -60, opacity: 0 }}
+                  transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+                  className="flex flex-col gap-1"
                 >
-                  {link.dropdown ? (
-                    /* ── Products: expandable ── */
-                    <div>
-                      <button
-                        onClick={() => setMobileProductsOpen(v => !v)}
-                        className="w-full flex items-center justify-between py-3 border-b border-white/[0.05] text-off-white/50 hover:text-off-white transition-colors"
-                        style={{
-                          fontFamily: "var(--font-bebas,'Bebas Neue')",
-                          fontSize: "clamp(1.6rem,6vw,2.2rem)",
-                          letterSpacing: "0.04em",
-                          lineHeight: 1,
-                        }}
-                      >
-                        {link.label}
-                        <motion.span
-                          animate={{ rotate: mobileProductsOpen ? 45 : 0 }}
-                          transition={{ duration: 0.25 }}
-                          className="text-blue/70 ml-4 flex-shrink-0"
-                          style={{ fontFamily: "sans-serif", fontSize: "1.3rem", lineHeight: 1 }}
+                  {navLinks.map((link, i) => (
+                    <motion.div
+                      key={link.label}
+                      initial={{ x: -40, opacity: 0 }}
+                      animate={{ x: 0,   opacity: 1 }}
+                      transition={{ delay: 0.1 + i * 0.07, ease: [0.16, 1, 0.3, 1], duration: 0.6 }}
+                    >
+                      {link.dropdown ? (
+                        /* ── Products: drills into the sub-category view ── */
+                        <button
+                          onClick={() => setMobileView("products")}
+                          className="w-full flex items-center justify-between py-3 border-b border-white/[0.05] text-off-white/50 hover:text-off-white transition-colors"
+                          style={{
+                            fontFamily: "var(--font-bebas,'Bebas Neue')",
+                            fontSize: "clamp(1.6rem,6vw,2.2rem)",
+                            letterSpacing: "0.04em",
+                            lineHeight: 1,
+                          }}
                         >
-                          +
-                        </motion.span>
-                      </button>
+                          {link.label}
+                          <span className="text-blue/70 ml-4 flex-shrink-0" style={{ fontSize: "1.4rem", lineHeight: 1 }}>
+                            →
+                          </span>
+                        </button>
+                      ) : (
+                        /* ── Regular link ── */
+                        <button
+                          onClick={() => handleLinkClick(link)}
+                          className="w-full text-left py-3 border-b border-white/[0.05] text-off-white/50 hover:text-off-white transition-colors"
+                          style={{
+                            fontFamily: "var(--font-bebas,'Bebas Neue')",
+                            fontSize: "clamp(1.6rem,6vw,2.2rem)",
+                            letterSpacing: "0.04em",
+                            lineHeight: 1,
+                          }}
+                        >
+                          {link.label}
+                        </button>
+                      )}
+                    </motion.div>
+                  ))}
 
-                      <AnimatePresence>
-                        {mobileProductsOpen && (
-                          <motion.div
-                            initial={{ height: 0, opacity: 0 }}
-                            animate={{ height: "auto", opacity: 1 }}
-                            exit={{    height: 0, opacity: 0 }}
-                            transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-                            className="overflow-hidden"
-                          >
-                            <div className="flex flex-col gap-0 pl-4 mb-2">
-                              {link.dropdown.map((sub, si) => (
-                                <motion.button
-                                  key={sub.label}
-                                  initial={{ x: -10, opacity: 0 }}
-                                  animate={{ x: 0,   opacity: 1 }}
-                                  transition={{ delay: si * 0.04 }}
-                                  onClick={() => navigate(sub.href)}
-                                  className="flex items-center gap-3 py-2.5 text-left"
-                                >
-                                  <div
-                                    className="w-[4px] h-[4px] rounded-full flex-shrink-0"
-                                    style={{ background: "#0041F9" }}
-                                  />
-                                  <span
-                                    className="font-mono text-[10px] tracking-[0.16em] uppercase"
-                                    style={{ color: "rgba(180,188,210,0.65)" }}
-                                  >
-                                    {sub.label}
-                                  </span>
-                                </motion.button>
-                              ))}
-                            </div>
-                          </motion.div>
-                        )}
-                      </AnimatePresence>
-                    </div>
-                  ) : (
-                    /* ── Regular link ── */
+                  <motion.div
+                    initial={{ x: -40, opacity: 0 }}
+                    animate={{ x: 0,   opacity: 1 }}
+                    transition={{ delay: 0.1 + navLinks.length * 0.07, ease: [0.16, 1, 0.3, 1], duration: 0.6 }}
+                    className="mt-8 flex flex-col items-start gap-5"
+                  >
                     <button
-                      onClick={() => handleLinkClick(link)}
+                      onClick={() => navigate("#cta")}
+                      className="inline-flex items-center justify-center gap-3 bg-blue text-white font-mono text-sm tracking-[0.14em] uppercase px-8 py-4"
+                    >
+                      Get a Quote
+                      <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                        <path d="M2 7H12M7 2L12 7L7 12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                      </svg>
+                    </button>
+                    <button
+                      onClick={() => navigate("/portal")}
+                      className="font-mono text-[11px] tracking-[0.18em] uppercase text-muted hover:text-off-white transition-colors duration-200"
+                    >
+                      Client Portal
+                    </button>
+                  </motion.div>
+                </motion.nav>
+              ) : (
+                /* ── Products sub-category view ── */
+                <motion.nav
+                  key="products"
+                  initial={{ x: 60, opacity: 0 }}
+                  animate={{ x: 0,  opacity: 1 }}
+                  exit={{    x: 60, opacity: 0 }}
+                  transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+                  className="flex flex-col gap-1"
+                >
+                  <button
+                    onClick={() => setMobileView("main")}
+                    className="flex items-center gap-3 mb-4 text-blue/80 hover:text-blue transition-colors"
+                  >
+                    <span style={{ fontSize: "1.2rem", lineHeight: 1 }}>←</span>
+                    <span className="font-mono text-[11px] tracking-[0.18em] uppercase">Back</span>
+                  </button>
+                  {navLinks[0].dropdown!.map((sub, si) => (
+                    <motion.button
+                      key={sub.label}
+                      initial={{ x: -20, opacity: 0 }}
+                      animate={{ x: 0,   opacity: 1 }}
+                      transition={{ delay: 0.05 + si * 0.05, ease: [0.16, 1, 0.3, 1], duration: 0.4 }}
+                      onClick={() => navigate(sub.href)}
                       className="w-full text-left py-3 border-b border-white/[0.05] text-off-white/50 hover:text-off-white transition-colors"
                       style={{
                         fontFamily: "var(--font-bebas,'Bebas Neue')",
-                        fontSize: "clamp(1.6rem,6vw,2.2rem)",
+                        fontSize: "clamp(1.5rem,5.5vw,2rem)",
                         letterSpacing: "0.04em",
                         lineHeight: 1,
                       }}
                     >
-                      {link.label}
-                    </button>
-                  )}
-                </motion.div>
-              ))}
-
-              <motion.div
-                initial={{ x: -40, opacity: 0 }}
-                animate={{ x: 0,   opacity: 1 }}
-                exit={{    x: -40, opacity: 0 }}
-                transition={{ delay: 0.1 + navLinks.length * 0.07, ease: [0.16, 1, 0.3, 1], duration: 0.6 }}
-                className="mt-8"
-              >
-                <button
-                  onClick={() => navigate("#cta")}
-                  className="inline-flex items-center justify-center gap-3 bg-blue text-white font-mono text-sm tracking-[0.14em] uppercase px-8 py-4"
-                >
-                  Get a Quote
-                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-                    <path d="M2 7H12M7 2L12 7L7 12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                  </svg>
-                </button>
-              </motion.div>
-            </nav>
+                      {sub.label}
+                    </motion.button>
+                  ))}
+                </motion.nav>
+              )}
+            </AnimatePresence>
+            </div>
 
             <p className="absolute bottom-8 left-8 font-mono text-[9px] tracking-[0.2em] uppercase text-muted">
               ELEVATE WORKWEAR © 2026
