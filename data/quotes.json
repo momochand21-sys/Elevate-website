@@ -1,0 +1,138 @@
+[
+  {
+    "id": "mq2ghm6h6xzx",
+    "reference": "QTE-MQ2GHM6H",
+    "company": "Acme Cleaning Ltd",
+    "contact": "Sarah Jones",
+    "email": "sarah@acmecleaning.co.uk",
+    "phone": "07700 900123",
+    "postcode": "M1 1AE",
+    "items": [
+      {
+        "productCode": "ELV-001",
+        "productName": "Premium Workwear Hoodie",
+        "qty": 25,
+        "method": "embroidery",
+        "positions": [
+          "Left Chest"
+        ],
+        "basePerUnit": 25.49,
+        "brandingPerUnit": 3,
+        "totalPerUnit": 28.49,
+        "lineTotal": 712.25
+      },
+      {
+        "productCode": "ELV-002",
+        "productName": "Premium Workwear Polo",
+        "qty": 25,
+        "method": "embroidery",
+        "positions": [
+          "Left Chest"
+        ],
+        "basePerUnit": 11.99,
+        "brandingPerUnit": 3,
+        "totalPerUnit": 14.99,
+        "lineTotal": 374.75
+      }
+    ],
+    "orderNotes": "Logo on file - blue colourway",
+    "totalRevenue": 1087,
+    "totalCost": 783,
+    "grossProfit": 304,
+    "margin": 28,
+    "status": "rejected",
+    "createdAt": "2026-06-06T14:36:18.952Z",
+    "updatedAt": "2026-06-08T13:14:21.508Z",
+    "subtotal": 1087,
+    "discountPercent": 0,
+    "discountAmount": 0
+  },
+  {
+    "id": "mq56ckd60v78",
+    "reference": "QTE-MQ56CKD6",
+    "customerId": "mq56616fmk07",
+    "company": "All clean Express",
+    "contact": "Mohamed saiyad",
+    "email": "",
+    "phone": "07305263900",
+    "postcode": "whalley range ",
+    "items": [
+      {
+        "productCode": "ELV-001",
+        "productName": "Premium Workwear Hoodie",
+        "qty": 10,
+        "method": "embroidery",
+        "positions": [
+          "left chest back"
+        ],
+        "basePerUnit": 25.99,
+        "brandingPerUnit": 8.5,
+        "totalPerUnit": 34.489999999999995,
+        "lineTotal": 344.9
+      },
+      {
+        "productCode": "ELV-002",
+        "productName": "Premium Workwear Polo",
+        "qty": 10,
+        "method": "embroidery",
+        "positions": [
+          "left chest back"
+        ],
+        "basePerUnit": 12.99,
+        "brandingPerUnit": 6,
+        "totalPerUnit": 18.990000000000002,
+        "lineTotal": 189.9
+      },
+      {
+        "productCode": "ELV-004",
+        "productName": "Premium Workwear Cap",
+        "qty": 10,
+        "method": "embroidery",
+        "positions": [
+          "front centre"
+        ],
+        "basePerUnit": 7.99,
+        "brandingPerUnit": 3.5,
+        "totalPerUnit": 11.49,
+        "lineTotal": 114.9
+      },
+      {
+        "productCode": "ELV-005",
+        "productName": "Premium Workwear Gilet",
+        "qty": 2,
+        "method": "embroidery",
+        "positions": [
+          "left chest back"
+        ],
+        "basePerUnit": 26.99,
+        "brandingPerUnit": 8.5,
+        "totalPerUnit": 35.489999999999995,
+        "lineTotal": 70.98
+      },
+      {
+        "productCode": "ELV-006",
+        "productName": "Premium Workwear 1/4 Zip",
+        "qty": 2,
+        "method": "embroidery",
+        "positions": [
+          "left chest"
+        ],
+        "basePerUnit": 24.99,
+        "brandingPerUnit": 3.5,
+        "totalPerUnit": 28.49,
+        "lineTotal": 56.98
+      }
+    ],
+    "orderNotes": "",
+    "totalRevenue": 622.13,
+    "totalCost": 406.16,
+    "grossProfit": 215.97,
+    "margin": 34.7,
+    "status": "sent",
+    "createdAt": "2026-06-08T12:15:45.687Z",
+    "updatedAt": "2026-06-08T13:21:21.295Z",
+    "subtotal": 777.66,
+    "discountPercent": 20,
+    "discountAmount": 155.53
+  }
+]

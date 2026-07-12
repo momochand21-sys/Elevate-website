@@ -1,0 +1,321 @@
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:opsz,wght@9..40,200;9..40,300;9..40,400;9..40,500&family=JetBrains+Mono:wght@300;400;500&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── CSS Variables ─── */
+:root {
+  --blue: #0041f9;
+  --gold: #c6aa72;
+  --black: #000000;
+  --dark: #050505;
+  --surface: #0a0a0a;
+  --off-white: #f5f5f3;
+  --silver: #9a9a9a;
+  --muted: #555555;
+  --border: #1a1a1a;
+  --ease-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-expo: cubic-bezier(0.7, 0, 0.84, 0);
+}
+
+/* ─── Base ─── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: auto; /* Lenis handles smooth scroll */
+  overflow-x: hidden;
+}
+
+body {
+  background-color: #000000;
+  color: #f5f5f3;
+  font-family: "DM Sans", sans-serif;
+  overflow-x: hidden;
+  cursor: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ─── Custom Cursor ─── */
+.cursor-dot {
+  position: fixed;
+  width: 6px;
+  height: 6px;
+  background: var(--blue);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  transition: width 0.15s var(--ease-expo), height 0.15s var(--ease-expo),
+    background 0.2s ease;
+  will-change: transform;
+}
+
+.cursor-ring {
+  position: fixed;
+  width: 38px;
+  height: 38px;
+  border: 1px solid rgba(0, 65, 249, 0.4);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9998;
+  transform: translate(-50%, -50%);
+  transition: width 0.5s var(--ease-expo), height 0.5s var(--ease-expo),
+    border-color 0.3s ease, background 0.3s ease;
+  will-change: transform;
+}
+
+.cursor-dot.hovering {
+  width: 10px;
+  height: 10px;
+  background: var(--off-white);
+}
+
+.cursor-ring.hovering {
+  width: 56px;
+  height: 56px;
+  border-color: rgba(245, 245, 243, 0.5);
+  background: rgba(0, 65, 249, 0.06);
+}
+
+.cursor-ring.clicking {
+  width: 30px;
+  height: 30px;
+  background: rgba(0, 65, 249, 0.18);
+}
+
+/* ─── Custom Scrollbar ─── */
+::-webkit-scrollbar {
+  width: 4px;
+}
+::-webkit-scrollbar-track {
+  background: #000;
+}
+::-webkit-scrollbar-thumb {
+  background: #1a1a1a;
+  border-radius: 2px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--blue);
+}
+
+/* ─── Selection ─── */
+::selection {
+  background: rgba(0, 65, 249, 0.3);
+  color: #f5f5f3;
+}
+
+/* ─── Film Grain ─── */
+.grain {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E");
+  opacity: 0.025;
+  pointer-events: none;
+  z-index: 9997;
+  will-change: auto;
+  /* Static grain — no animation, no performance hit */
+}
+
+/* ─── Scroll Progress Bar ─── */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 2px;
+  background: var(--blue);
+  z-index: 9996;
+  transform-origin: left;
+  will-change: transform;
+}
+
+/* ─── Section reveal ─── */
+.reveal-clip {
+  clip-path: inset(0 0 100% 0);
+  transition: clip-path 0.9s var(--ease-expo);
+}
+.reveal-clip.revealed {
+  clip-path: inset(0 0 0% 0);
+}
+
+/* ─── Text overflow hidden (for character reveals) ─── */
+.overflow-clip {
+  overflow: hidden;
+  display: inline-block;
+}
+
+/* ─── Gradient text ─── */
+.text-gradient-blue {
+  background: linear-gradient(135deg, #0041f9 0%, #2558ff 50%, #7b9fff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.text-gradient-gold {
+  background: linear-gradient(135deg, #c6aa72 0%, #e8d5a3 50%, #c6aa72 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ─── Glassmorphism ─── */
+.glass {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.glass-blue {
+  background: rgba(0, 65, 249, 0.06);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(0, 65, 249, 0.15);
+}
+
+/* ─── Ambient glow orbs ─── */
+.orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  pointer-events: none;
+  will-change: auto;
+  transform: translateZ(0);
+}
+
+.orb-blue {
+  background: radial-gradient(ellipse, rgba(0, 65, 249, 0.25) 0%, transparent 70%);
+}
+
+.orb-blue-sm {
+  background: radial-gradient(ellipse, rgba(0, 65, 249, 0.15) 0%, transparent 70%);
+}
+
+/* ─── Magnetic button base ─── */
+.magnetic-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  will-change: transform;
+}
+
+/* ─── Vignette ─── */
+.vignette {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse 85% 85% at 50% 50%,
+    transparent 30%,
+    rgba(0, 0, 0, 0.7) 100%
+  );
+  pointer-events: none;
+}
+
+/* ─── Horizontal scroll container ─── */
+.horizontal-scroll-container {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.horizontal-scroll-container::-webkit-scrollbar {
+  display: none;
+}
+
+/* ─── Number counter ─── */
+.stat-number {
+  font-variant-numeric: tabular-nums;
+}
+
+/* ─── Animated underline ─── */
+.animated-underline {
+  position: relative;
+}
+.animated-underline::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 0;
+  height: 1px;
+  background: var(--blue);
+  transition: width 0.4s var(--ease-expo);
+}
+.animated-underline:hover::after {
+  width: 100%;
+}
+
+/* ─── Blue line accent ─── */
+.blue-line {
+  display: block;
+  width: 0;
+  height: 1px;
+  background: var(--blue);
+  animation: lineGrow 1.2s var(--ease-expo) 0.5s forwards;
+}
+
+/* ─── Section label ─── */
+.section-label {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 9px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--blue);
+}
+.section-label::before {
+  content: "";
+  display: block;
+  width: 20px;
+  height: 1px;
+  background: var(--blue);
+  flex-shrink: 0;
+}
+
+/* ─── Noise texture overlay (for cards) ─── */
+.noise-overlay::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E");
+  opacity: 0.025;
+  pointer-events: none;
+  border-radius: inherit;
+}
+
+/* ─── Loading screen ─── */
+.loading-bar {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--blue), transparent);
+}
+
+/* ─── Blinking cursor ─── */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+.cursor-blink {
+  animation: blink 1s step-end infinite;
+}
+
+/* ─── Responsive utilities ─── */
+@media (max-width: 768px) {
+  body { cursor: auto; }
+  .cursor-dot, .cursor-ring { display: none; }
+}
+
+/* ─── Number input — hide native spinners (replaced by custom buttons) ─── */
+.qty-input::-webkit-inner-spin-button,
+.qty-input::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }
+.qty-input[type="number"] { -moz-appearance: textfield; }

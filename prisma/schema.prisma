@@ -1,0 +1,164 @@
+// Elevate CRM database schema
+// Postgres (Supabase). Mirrors the TypeScript interfaces in lib/admin/types.ts.
+//
+// Money values use Float (JS numbers, matching the app's existing arithmetic).
+// Nested/dynamic structures (per-position decoration prices, line items, cost
+// breakdowns, volume tiers) are stored as Json. Simple string lists use Postgres
+// scalar arrays.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL") // pooled connection (app runtime)
+  directUrl = env("DIRECT_URL")   // direct connection (migrations)
+}
+
+enum QuoteStatus {
+  new
+  sent
+  approved
+  rejected
+  converted
+}
+
+enum OrderStatus {
+  payment_pending
+  paid
+  sent_to_supplier
+  in_production
+  quality_check
+  dispatched
+  completed
+}
+
+enum LeadStatus {
+  new
+  contacted
+  interested
+  not_interested
+  converted
+}
+
+model Product {
+  code                 String   @id
+  name                 String
+  category             String
+  garmentCost          Float
+  garmentSellPrice     Float
+  decorationCosts      Json // Record<position, { embroidery, print }>
+  decorationSellPrices Json // Record<position, { embroidery, print }>
+  brandingPositions    String[] @default([])
+  sizes                String[] @default([])
+  active               Boolean  @default(true)
+  volumeTiers          Json // PriceTier[]
+  updatedAt            DateTime @default(now())
+}
+
+model Customer {
+  id                  String   @id
+  company             String
+  contact             String
+  email               String
+  phone               String
+  address             String   @default("")
+  notes               String   @default("")
+  digitisedLogoStatus String   @default("none") // none | pending | complete
+  savedLogos          String[] @default([])
+  orderIds            String[] @default([])
+  createdAt           DateTime @default(now())
+  updatedAt           DateTime @default(now())
+}
+
+model Quote {
+  id              String      @id
+  reference       String
+  customerId      String?
+  company         String
+  contact         String
+  email           String
+  phone           String
+  postcode        String?
+  items           Json // OrderItem[]
+  orderNotes      String?
+  subtotal        Float
+  discountPercent Float       @default(0)
+  discountAmount  Float       @default(0)
+  totalRevenue    Float
+  totalCost       Float
+  grossProfit     Float
+  margin          Float
+  status          QuoteStatus @default(new)
+  orderId         String?
+  createdAt       DateTime    @default(now())
+  updatedAt       DateTime    @default(now())
+
+  @@index([status])
+  @@index([createdAt])
+}
+
+model CallBooking {
+  id        String   @id
+  name      String
+  phone     String
+  date      String // YYYY-MM-DD (customer's chosen day)
+  time      String // HH:MM 24h (slot from 09:00 onwards)
+  notes     String?
+  status    String   @default("new") // new | confirmed | completed | cancelled
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now())
+
+  @@index([date])
+  @@index([createdAt])
+}
+
+model Lead {
+  id        String     @id
+  company   String
+  contact   String     @default("")
+  email     String     @default("")
+  phone     String     @default("")
+  address   String     @default("")
+  source    String     @default("") // e.g. Cold Call, Referral, Website, LinkedIn, Walk-in
+  notes     String     @default("")
+  status    LeadStatus @default(new)
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @default(now())
+
+  @@index([status])
+  @@index([createdAt])
+}
+
+model Order {
+  id              String      @id
+  reference       String
+  quoteId         String?
+  customerId      String?
+  company         String
+  contact         String
+  email           String
+  phone           String
+  address         String?
+  items           Json // OrderItem[]
+  orderNotes      String?
+  costs           Json // OrderCosts
+  subtotal        Float
+  discountPercent Float       @default(0)
+  discountAmount  Float       @default(0)
+  totalRevenue    Float
+  garmentCost     Float
+  decorationCost  Float
+  totalJobCost    Float
+  grossProfit     Float
+  margin          Float
+  markup          Float
+  status          OrderStatus @default(payment_pending)
+  logoFiles       String[]    @default([])
+  createdAt       DateTime    @default(now())
+  updatedAt       DateTime    @default(now())
+
+  @@index([status])
+  @@index([createdAt])
+}

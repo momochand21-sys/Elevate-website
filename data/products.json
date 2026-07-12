@@ -1,0 +1,198 @@
+[
+  {
+    "code": "ELV-001",
+    "name": "Premium Workwear Hoodie",
+    "category": "Hoodies",
+    "garmentCost": 18.60,
+    "garmentSellPrice": 25.99,
+    "decorationCosts": {
+      "Left Chest":   { "embroidery": 1.80, "print": 0.80 },
+      "Right Chest":  { "embroidery": 1.80, "print": 0.80 },
+      "Front Centre": { "embroidery": 1.80, "print": 0.80 },
+      "Front Chest":  { "embroidery": 1.80, "print": 0.80 },
+      "Back":         { "embroidery": 2.50, "print": 1.25 },
+      "Left Shoulder":  { "embroidery": 0.75, "print": 0.50 },
+      "Right Shoulder": { "embroidery": 0.75, "print": 0.50 }
+    },
+    "decorationSellPrices": {
+      "Left Chest":   { "embroidery": 3.50, "print": 1.67 },
+      "Right Chest":  { "embroidery": 3.50, "print": 1.67 },
+      "Front Centre": { "embroidery": 3.50, "print": 1.67 },
+      "Front Chest":  { "embroidery": 3.50, "print": 1.67 },
+      "Back":         { "embroidery": 5.00, "print": 2.50 },
+      "Left Shoulder":  { "embroidery": 1.50, "print": 1.00 },
+      "Right Shoulder": { "embroidery": 1.50, "print": 1.00 }
+    },
+    "brandingPositions": ["Left Chest", "Right Chest", "Front Centre", "Front Chest", "Back", "Left Shoulder", "Right Shoulder"],
+    "sizes": ["XS", "S", "M", "L", "XL", "XXL"],
+    "active": true,
+    "volumeTiers": [
+      { "min": 10,  "max": 24,     "price": 25.99 },
+      { "min": 25,  "max": 49,     "price": 25.49 },
+      { "min": 50,  "max": 99,     "price": 23.99 },
+      { "min": 100, "max": 249,    "price": 22.49 },
+      { "min": 250, "max": 999999, "price": 20.99 }
+    ],
+    "updatedAt": "2024-01-01T00:00:00.000Z"
+  },
+  {
+    "code": "ELV-002",
+    "name": "Premium Workwear Polo",
+    "category": "Polo Shirts",
+    "garmentCost": 9.12,
+    "garmentSellPrice": 12.99,
+    "decorationCosts": {
+      "Left Chest":   { "embroidery": 1.80, "print": 0.80 },
+      "Right Chest":  { "embroidery": 1.80, "print": 0.80 },
+      "Front Centre": { "embroidery": 1.80, "print": 0.80 },
+      "Front Chest":  { "embroidery": 1.80, "print": 0.80 },
+      "Back":         { "embroidery": 2.50, "print": 1.25 },
+      "Left Shoulder":  { "embroidery": 0.75, "print": 0.50 },
+      "Right Shoulder": { "embroidery": 0.75, "print": 0.50 }
+    },
+    "decorationSellPrices": {
+      "Left Chest":   { "embroidery": 3.50, "print": 1.67 },
+      "Right Chest":  { "embroidery": 3.50, "print": 1.67 },
+      "Front Centre": { "embroidery": 3.50, "print": 1.67 },
+      "Front Chest":  { "embroidery": 3.50, "print": 1.67 },
+      "Back":         { "embroidery": 5.00, "print": 2.50 },
+      "Left Shoulder":  { "embroidery": 1.50, "print": 1.00 },
+      "Right Shoulder": { "embroidery": 1.50, "print": 1.00 }
+    },
+    "brandingPositions": ["Left Chest", "Right Chest", "Front Centre", "Front Chest", "Back", "Left Shoulder", "Right Shoulder"],
+    "sizes": ["XS", "S", "M", "L", "XL", "XXL"],
+    "active": true,
+    "volumeTiers": [
+      { "min": 10,  "max": 24,     "price": 12.99 },
+      { "min": 25,  "max": 49,     "price": 11.99 },
+      { "min": 50,  "max": 99,     "price": 10.99 },
+      { "min": 100, "max": 249,    "price": 10.49 },
+      { "min": 250, "max": 999999, "price":  9.99 }
+    ],
+    "updatedAt": "2024-01-01T00:00:00.000Z"
+  },
+  {
+    "code": "ELV-003",
+    "name": "Premium Workwear Beanie",
+    "category": "Caps & Beanies",
+    "garmentCost": 4.83,
+    "garmentSellPrice": 6.99,
+    "decorationCosts": {
+      "Front":  { "embroidery": 1.50, "print": 0.75 },
+      "Left Side":  { "embroidery": 1.00, "print": 0.60 },
+      "Right Side": { "embroidery": 1.00, "print": 0.60 }
+    },
+    "decorationSellPrices": {
+      "Front":  { "embroidery": 3.00, "print": 1.50 },
+      "Left Side":  { "embroidery": 2.00, "print": 1.00 },
+      "Right Side": { "embroidery": 2.00, "print": 1.00 }
+    },
+    "brandingPositions": ["Front", "Left Side", "Right Side"],
+    "sizes": ["One Size"],
+    "active": true,
+    "volumeTiers": [
+      { "min": 10,  "max": 24,     "price": 6.99 },
+      { "min": 25,  "max": 49,     "price": 6.49 },
+      { "min": 50,  "max": 99,     "price": 5.99 },
+      { "min": 100, "max": 249,    "price": 5.49 },
+      { "min": 250, "max": 999999, "price": 5.19 }
+    ],
+    "updatedAt": "2024-01-01T00:00:00.000Z"
+  },
+  {
+    "code": "ELV-004",
+    "name": "Premium Workwear Cap",
+    "category": "Caps & Beanies",
+    "garmentCost": 5.21,
+    "garmentSellPrice": 7.99,
+    "decorationCosts": {
+      "Front Panel": { "embroidery": 1.80, "print": 0.90 },
+      "Left Side":   { "embroidery": 1.00, "print": 0.60 },
+      "Right Side":  { "embroidery": 1.00, "print": 0.60 },
+      "Back":        { "embroidery": 1.00, "print": 0.60 }
+    },
+    "decorationSellPrices": {
+      "Front Panel": { "embroidery": 3.50, "print": 1.75 },
+      "Left Side":   { "embroidery": 2.00, "print": 1.00 },
+      "Right Side":  { "embroidery": 2.00, "print": 1.00 },
+      "Back":        { "embroidery": 2.00, "print": 1.00 }
+    },
+    "brandingPositions": ["Front Panel", "Left Side", "Right Side", "Back"],
+    "sizes": ["One Size"],
+    "active": true,
+    "volumeTiers": [
+      { "min": 10,  "max": 24,     "price": 7.99 },
+      { "min": 25,  "max": 49,     "price": 7.49 },
+      { "min": 50,  "max": 99,     "price": 6.99 },
+      { "min": 100, "max": 249,    "price": 6.49 },
+      { "min": 250, "max": 999999, "price": 5.99 }
+    ],
+    "updatedAt": "2024-01-01T00:00:00.000Z"
+  },
+  {
+    "code": "ELV-005",
+    "name": "Premium Workwear Gilet",
+    "category": "Gilets",
+    "garmentCost": 20.43,
+    "garmentSellPrice": 26.99,
+    "decorationCosts": {
+      "Left Chest":   { "embroidery": 1.80, "print": 0.80 },
+      "Right Chest":  { "embroidery": 1.80, "print": 0.80 },
+      "Back":         { "embroidery": 2.50, "print": 1.25 },
+      "Left Shoulder":  { "embroidery": 0.75, "print": 0.50 },
+      "Right Shoulder": { "embroidery": 0.75, "print": 0.50 }
+    },
+    "decorationSellPrices": {
+      "Left Chest":   { "embroidery": 3.50, "print": 1.67 },
+      "Right Chest":  { "embroidery": 3.50, "print": 1.67 },
+      "Back":         { "embroidery": 5.00, "print": 2.50 },
+      "Left Shoulder":  { "embroidery": 1.50, "print": 1.00 },
+      "Right Shoulder": { "embroidery": 1.50, "print": 1.00 }
+    },
+    "brandingPositions": ["Left Chest", "Right Chest", "Back", "Left Shoulder", "Right Shoulder"],
+    "sizes": ["XS", "S", "M", "L", "XL", "XXL"],
+    "active": true,
+    "volumeTiers": [
+      { "min": 10,  "max": 24,     "price": 26.99 },
+      { "min": 25,  "max": 49,     "price": 25.49 },
+      { "min": 50,  "max": 99,     "price": 23.99 },
+      { "min": 100, "max": 249,    "price": 22.49 },
+      { "min": 250, "max": 999999, "price": 21.49 }
+    ],
+    "updatedAt": "2024-01-01T00:00:00.000Z"
+  },
+  {
+    "code": "ELV-006",
+    "name": "Premium Workwear 1/4 Zip",
+    "category": "Quarter Zips",
+    "garmentCost": 18.00,
+    "garmentSellPrice": 24.99,
+    "decorationCosts": {
+      "Left Chest":   { "embroidery": 1.80, "print": 0.80 },
+      "Right Chest":  { "embroidery": 1.80, "print": 0.80 },
+      "Front Centre": { "embroidery": 1.80, "print": 0.80 },
+      "Back":         { "embroidery": 2.50, "print": 1.25 },
+      "Left Shoulder":  { "embroidery": 0.75, "print": 0.50 },
+      "Right Shoulder": { "embroidery": 0.75, "print": 0.50 }
+    },
+    "decorationSellPrices": {
+      "Left Chest":   { "embroidery": 3.50, "print": 1.67 },
+      "Right Chest":  { "embroidery": 3.50, "print": 1.67 },
+      "Front Centre": { "embroidery": 3.50, "print": 1.67 },
+      "Back":         { "embroidery": 5.00, "print": 2.50 },
+      "Left Shoulder":  { "embroidery": 1.50, "print": 1.00 },
+      "Right Shoulder": { "embroidery": 1.50, "print": 1.00 }
+    },
+    "brandingPositions": ["Left Chest", "Right Chest", "Front Centre", "Back", "Left Shoulder", "Right Shoulder"],
+    "sizes": ["XS", "S", "M", "L", "XL", "XXL"],
+    "active": true,
+    "volumeTiers": [
+      { "min": 10,  "max": 24,     "price": 24.99 },
+      { "min": 25,  "max": 49,     "price": 23.99 },
+      { "min": 50,  "max": 99,     "price": 22.99 },
+      { "min": 100, "max": 249,    "price": 21.49 },
+      { "min": 250, "max": 999999, "price": 19.99 }
+    ],
+    "updatedAt": "2024-01-01T00:00:00.000Z"
+  }
+]
