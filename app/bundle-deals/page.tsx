@@ -55,13 +55,13 @@ export default function BundleDealsPage() {
                 className={`group-hover:border-blue/40 transition-all duration-300 overflow-hidden flex flex-col h-full ${idx === BUNDLES.length - 1 && BUNDLES.length % 2 === 1 ? "md:col-span-2" : ""}`}>
 
                 {/* Bundle image */}
-                <div className="relative bg-[#0A0A0E] flex items-center justify-center overflow-hidden"
+                <div className="relative bg-[#0A0A0E] flex items-end justify-center overflow-hidden pb-3"
                   style={{ aspectRatio: idx === BUNDLES.length - 1 && BUNDLES.length % 2 === 1 ? "21/9" : "16/9" }}>
                   <div className="absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500"
                     style={{ background:"radial-gradient(ellipse 70% 60% at 50% 45%, rgba(0,65,249,0.08) 0%, transparent 70%)" }}/>
                   <Image src={b.image} alt={b.name} width={1400} height={787}
                     className="relative z-10 transition-transform duration-500 group-hover:scale-[1.03]"
-                    style={{ width:"auto", height:"62%", maxWidth:"84%", objectFit:"contain", filter:"brightness(1.05)" }}
+                    style={{ width:"auto", height:"56%", maxWidth:"80%", objectFit:"contain", filter:"brightness(1.05)" }}
                     sizes="(max-width:768px) 90vw, 45vw"/>
 
                   {/* Saving badge */}
