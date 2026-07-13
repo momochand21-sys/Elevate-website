@@ -79,16 +79,16 @@ export default function ProductsPage() {
                   Save Over £35
                 </span>
               </div>
-            </div>
-            {/* Free logo badge */}
-            <div className="absolute bottom-4 left-4 z-20 flex items-center gap-1.5"
-              style={{ background:"rgba(74,222,128,0.15)", border:"1px solid rgba(74,222,128,0.5)", padding:"5px 11px" }}>
-              <svg width="8" height="8" viewBox="0 0 10 10" fill="none">
-                <path d="M2 5L4 7.5L8 2.5" stroke="#4ade80" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-              </svg>
-              <span style={{ fontFamily:"var(--font-jetbrains,monospace)", fontSize:"0.48rem", letterSpacing:"0.12em", textTransform:"uppercase", color:"#4ade80" }}>
-                Free Logo Setup
-              </span>
+              {/* Free logo badge */}
+              <div className="absolute top-4 right-4 z-20 flex items-center gap-1.5"
+                style={{ background:"rgba(74,222,128,0.15)", border:"1px solid rgba(74,222,128,0.5)", padding:"5px 11px" }}>
+                <svg width="8" height="8" viewBox="0 0 10 10" fill="none">
+                  <path d="M2 5L4 7.5L8 2.5" stroke="#4ade80" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+                <span style={{ fontFamily:"var(--font-jetbrains,monospace)", fontSize:"0.48rem", letterSpacing:"0.12em", textTransform:"uppercase", color:"#4ade80" }}>
+                  Free Logo Setup
+                </span>
+              </div>
             </div>
             {/* Detail */}
             <div className="p-8 md:p-10 flex flex-col justify-center gap-5">
