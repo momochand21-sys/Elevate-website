@@ -4,6 +4,10 @@ import { insertOne, generateId, generateRef } from "@/lib/admin/db";
 import { calcQuoteProfits } from "@/lib/admin/calculations";
 import type { Quote, OrderItem } from "@/lib/admin/types";
 
+// Emails go to external inboxes that can't reach localhost, so this must always be a
+// publicly reachable URL.
+const LOGO_URL = "https://www.elevateworkwear.com/logo/elevate-logo-white.png";
+
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
@@ -70,14 +74,14 @@ export async function POST(req: NextRequest) {
 <style>body{margin:0;background:#f4f4f5;font-family:'Helvetica Neue',Arial,sans-serif}</style>
 </head><body>
 <div style="max-width:700px;margin:32px auto;background:#fff">
-  <div style="background:#07070A;padding:28px 32px;border-bottom:3px solid #0041F9">
-    <p style="color:#fff;font-size:22px;font-weight:700;letter-spacing:2px;margin:0">ELEVATE</p>
-    <p style="color:rgba(255,255,255,0.4);font-size:11px;letter-spacing:2px;text-transform:uppercase;margin:6px 0 0">Workwear Solutions — Basket Quote Request</p>
-  </div>
-  <div style="background:#0041F9;padding:14px 32px;display:flex;justify-content:space-between;align-items:center">
-    <span style="color:rgba(255,255,255,0.6);font-size:10px;letter-spacing:2px;text-transform:uppercase">Reference</span>
-    <span style="color:#fff;font-size:18px;font-weight:700;letter-spacing:3px">${ref}</span>
-  </div>
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" bgcolor="#07070A" style="background:#07070A;border-bottom:3px solid #0041F9"><tr><td style="padding:24px 32px">
+    <img src="${LOGO_URL}" alt="Elevate Workwear Solutions" width="140" style="display:block;height:auto;border:0;margin:0 0 8px"/>
+    <p style="color:rgba(255,255,255,0.6);font-size:11px;letter-spacing:2px;text-transform:uppercase;margin:0">Basket Quote Request</p>
+  </td></tr></table>
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" bgcolor="#0041F9" style="background:#0041F9"><tr>
+    <td style="padding:14px 32px;color:#ffffff;font-size:10px;letter-spacing:2px;text-transform:uppercase;white-space:nowrap">Reference</td>
+    <td style="padding:14px 32px;color:#ffffff;font-size:16px;font-weight:700;letter-spacing:1.5px;text-align:right;white-space:nowrap">${ref}</td>
+  </tr></table>
   <div style="padding:28px 32px">
     <h2 style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#0041F9;border-bottom:1px solid #e5e7eb;padding-bottom:8px;margin-bottom:16px">Customer Details</h2>
     <table style="width:100%;border-collapse:collapse;font-size:13px;margin-bottom:8px">
@@ -163,6 +167,91 @@ export async function POST(req: NextRequest) {
         return NextResponse.json({ error: "Failed to send email" }, { status: 400 });
       }
 
+      // Confirmation email to the customer — doesn't block the response if it fails
+      if (email) {
+        try {
+          const firstName = String(contact ?? "").trim().split(" ")[0] || "there";
+          const confirmationHtml = `
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"/><title>Quote Request Received — ${ref}</title>
+<style>body{margin:0;background:#f4f4f5;font-family:'Helvetica Neue',Arial,sans-serif}</style>
+</head><body>
+<div style="max-width:700px;margin:32px auto;background:#fff">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" bgcolor="#07070A" style="background:#07070A;border-bottom:3px solid #0041F9"><tr><td style="padding:24px 32px">
+    <img src="${LOGO_URL}" alt="Elevate Workwear Solutions" width="140" style="display:block;height:auto;border:0;margin:0 0 8px"/>
+    <p style="color:rgba(255,255,255,0.6);font-size:11px;letter-spacing:2px;text-transform:uppercase;margin:0">Workwear Solutions</p>
+  </td></tr></table>
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" bgcolor="#0041F9" style="background:#0041F9"><tr>
+    <td style="padding:14px 32px;color:#ffffff;font-size:10px;letter-spacing:2px;text-transform:uppercase;white-space:nowrap">Reference</td>
+    <td style="padding:14px 32px;color:#ffffff;font-size:16px;font-weight:700;letter-spacing:1.5px;text-align:right;white-space:nowrap">${ref}</td>
+  </tr></table>
+  <div style="padding:32px">
+    <h1 style="font-size:20px;color:#111;margin:0 0 12px">Thanks, ${firstName} — your quote request is in.</h1>
+    <p style="font-size:14px;color:#444;line-height:1.6;margin:0 0 24px">
+      We've received your request and one of our team will be in touch with your personalised quote
+      within <strong>5 working hours</strong>. If you need to add anything in the meantime, just reply
+      to this email.
+    </p>
+    <h2 style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#0041F9;border-bottom:1px solid #e5e7eb;padding-bottom:8px;margin-bottom:16px">Your Request Summary</h2>
+    <table style="width:100%;border-collapse:collapse;font-size:12px">
+      <thead>
+        <tr style="background:#f9fafb">
+          <th style="padding:8px 12px;text-align:left;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:#888">Product</th>
+          <th style="padding:8px 12px;text-align:left;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:#888">Sizes</th>
+          <th style="padding:8px 12px;text-align:right;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:#888">Units</th>
+        </tr>
+      </thead>
+      <tbody>${basket.map((item: { productName: string; totalQty: number; sizeQtys?: Record<string, number>; qty?: number; isBundle?: boolean; bundleContents?: { name: string; qty: number; sizeQtys?: Record<string, number> }[] }) => {
+        const sizes = item.isBundle && item.bundleContents
+          ? item.bundleContents.map(c => {
+              const sz = c.sizeQtys ? Object.entries(c.sizeQtys).filter(([, q]) => q > 0).map(([s, q]) => `${q}×${s}`).join("/") : "";
+              return `${c.qty}× ${c.name.replace("Premium Workwear ", "")}${sz ? ` (${sz})` : ""}`;
+            }).join("<br/>")
+          : item.sizeQtys
+          ? Object.entries(item.sizeQtys).filter(([, q]) => q > 0).map(([s, q]) => `${q}×${s}`).join(", ")
+          : item.qty ? `${item.qty} units (One Size)` : "—";
+        return `
+        <tr>
+          <td style="padding:10px 12px;border-bottom:1px solid #f0f0f0"><strong>${item.productName}</strong></td>
+          <td style="padding:10px 12px;border-bottom:1px solid #f0f0f0;font-size:12px">${sizes}</td>
+          <td style="padding:10px 12px;border-bottom:1px solid #f0f0f0;font-size:12px;text-align:right">${item.totalQty}</td>
+        </tr>`;
+      }).join("")}</tbody>
+    </table>
+    <p style="font-size:12px;color:#666;line-height:1.6;margin-top:20px">
+      Pricing isn't shown here — your dedicated account manager will send your personalised quote,
+      including full pricing, directly to this email shortly.
+    </p>
+  </div>
+  <div style="background:#f4f4f5;padding:16px 32px;font-size:10px;color:#999;letter-spacing:1px;text-transform:uppercase;display:flex;justify-content:space-between">
+    <span>info@elevateworkwear.com</span><span>${ts}</span>
+  </div>
+</div>
+</body></html>`;
+
+          const confirmationText = [
+            `Thanks, ${firstName} — your quote request is in.`,
+            ``,
+            `Reference: ${ref}`,
+            `We've received your request and one of our team will be in touch with your personalised quote within 5 working hours.`,
+            ``,
+            `YOUR REQUEST SUMMARY`,
+            ...basket.map((item: { productName: string; totalQty: number }) =>
+              `- ${item.productName}: ${item.totalQty} units`),
+            ``,
+            `Pricing isn't included here — your account manager will send your personalised quote, including full pricing, directly to this email shortly.`,
+          ].join("\n");
+
+          await sendMail({
+            to: email,
+            subject: `We've received your quote request — ${ref}`,
+            html: confirmationHtml,
+            text: confirmationText,
+          });
+        } catch (err) {
+          console.error("Customer confirmation email error:", err);
+        }
+      }
+
       // Save quote to admin DB
       try {
         const now = new Date().toISOString();
@@ -219,12 +308,9 @@ export async function POST(req: NextRequest) {
 <style>
   body{margin:0;padding:0;background:#f4f4f5;font-family:'Helvetica Neue',Arial,sans-serif}
   .wrap{max-width:640px;margin:32px auto;background:#fff}
-  .hdr{background:#07070A;padding:28px 32px;border-bottom:3px solid #0041F9}
-  .hdr-title{color:#fff;font-size:22px;font-weight:700;letter-spacing:2px;margin:0}
-  .hdr-sub{color:rgba(255,255,255,0.4);font-size:11px;letter-spacing:2px;text-transform:uppercase;margin:6px 0 0}
-  .ref-band{background:#0041F9;padding:14px 32px;display:flex;justify-content:space-between;align-items:center}
-  .ref-label{color:rgba(255,255,255,0.6);font-size:10px;letter-spacing:2px;text-transform:uppercase}
-  .ref-val{color:#fff;font-size:18px;font-weight:700;letter-spacing:3px}
+  .hdr-sub{color:rgba(255,255,255,0.6);font-size:11px;letter-spacing:2px;text-transform:uppercase;margin:0}
+  .ref-label{color:#ffffff;font-size:10px;letter-spacing:2px;text-transform:uppercase;white-space:nowrap}
+  .ref-val{color:#ffffff;font-size:16px;font-weight:700;letter-spacing:1.5px;white-space:nowrap}
   .body{padding:28px 32px}
   h2{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#0041F9;margin:24px 0 12px;padding-bottom:8px;border-bottom:1px solid #e5e7eb}
   .grid{display:grid;grid-template-columns:1fr 1fr;gap:12px 24px;margin-bottom:8px}
@@ -242,14 +328,14 @@ export async function POST(req: NextRequest) {
 </head>
 <body>
 <div class="wrap">
-  <div class="hdr">
-    <p class="hdr-title">ELEVATE</p>
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" bgcolor="#07070A" style="background:#07070A;border-bottom:3px solid #0041F9"><tr><td style="padding:24px 32px">
+    <img src="${LOGO_URL}" alt="Elevate Workwear Solutions" width="140" style="display:block;height:auto;border:0;margin:0 0 8px"/>
     <p class="hdr-sub">Workwear Solutions — New Quote Request</p>
-  </div>
-  <div class="ref-band">
-    <span class="ref-label">Reference</span>
-    <span class="ref-val">${reference}</span>
-  </div>
+  </td></tr></table>
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" bgcolor="#0041F9" style="background:#0041F9"><tr>
+    <td class="ref-label" style="padding:14px 32px">Reference</td>
+    <td class="ref-val" style="padding:14px 32px;text-align:right">${reference}</td>
+  </tr></table>
   <div class="body">
     <h2>Customer Details</h2>
     <div class="grid">
@@ -338,6 +424,74 @@ export async function POST(req: NextRequest) {
     } catch (err) {
       console.error("Zoho send error:", err);
       return NextResponse.json({ error: "Failed to send email" }, { status: 400 });
+    }
+
+    // Confirmation email to the customer — doesn't block the response if it fails
+    if (email) {
+      try {
+        const firstName = String(contact ?? "").trim().split(" ")[0] || "there";
+        const confirmationHtml = `
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"/><title>Quote Request Received — ${reference}</title>
+<style>body{margin:0;background:#f4f4f5;font-family:'Helvetica Neue',Arial,sans-serif}</style>
+</head><body>
+<div style="max-width:640px;margin:32px auto;background:#fff">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" bgcolor="#07070A" style="background:#07070A;border-bottom:3px solid #0041F9"><tr><td style="padding:24px 32px">
+    <img src="${LOGO_URL}" alt="Elevate Workwear Solutions" width="140" style="display:block;height:auto;border:0;margin:0 0 8px"/>
+    <p style="color:rgba(255,255,255,0.6);font-size:11px;letter-spacing:2px;text-transform:uppercase;margin:0">Workwear Solutions</p>
+  </td></tr></table>
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" bgcolor="#0041F9" style="background:#0041F9"><tr>
+    <td style="padding:14px 32px;color:#ffffff;font-size:10px;letter-spacing:2px;text-transform:uppercase;white-space:nowrap">Reference</td>
+    <td style="padding:14px 32px;color:#ffffff;font-size:16px;font-weight:700;letter-spacing:1.5px;text-align:right;white-space:nowrap">${reference}</td>
+  </tr></table>
+  <div style="padding:32px">
+    <h1 style="font-size:20px;color:#111;margin:0 0 12px">Thanks, ${firstName} — your quote request is in.</h1>
+    <p style="font-size:14px;color:#444;line-height:1.6;margin:0 0 24px">
+      We've received your request and one of our team will be in touch with your personalised quote
+      within <strong>5 working hours</strong>. If you need to add anything in the meantime, just reply
+      to this email.
+    </p>
+    <h2 style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#0041F9;border-bottom:1px solid #e5e7eb;padding-bottom:8px;margin-bottom:16px">Your Request Summary</h2>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px 24px;margin-bottom:8px">
+      <div><label style="display:block;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:#888;margin-bottom:3px">Product</label><span style="font-size:13px;color:#111">${productName}</span></div>
+      <div><label style="display:block;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:#888;margin-bottom:3px">Quantity</label><span style="font-size:13px;color:#111">${qty} units</span></div>
+      <div><label style="display:block;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:#888;margin-bottom:3px">Branding</label><span style="font-size:13px;color:#111">${methodLabel}</span></div>
+      <div><label style="display:block;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:#888;margin-bottom:3px">Position(s)</label><span style="font-size:13px;color:#111">${(positions as string[]).join(", ") || "None"}</span></div>
+    </div>
+    <p style="font-size:12px;color:#666;line-height:1.6;margin-top:20px">
+      Pricing isn't shown here — your dedicated account manager will send your personalised quote,
+      including full pricing, directly to this email shortly.
+    </p>
+  </div>
+  <div style="background:#f4f4f5;padding:16px 32px;font-size:10px;color:#999;letter-spacing:1px;text-transform:uppercase;display:flex;justify-content:space-between">
+    <span>info@elevateworkwear.com</span><span>${ts}</span>
+  </div>
+</div>
+</body></html>`;
+
+        const confirmationText = [
+          `Thanks, ${firstName} — your quote request is in.`,
+          ``,
+          `Reference: ${reference}`,
+          `We've received your request and one of our team will be in touch with your personalised quote within 5 working hours.`,
+          ``,
+          `YOUR REQUEST SUMMARY`,
+          `Product: ${productName}`,
+          `Quantity: ${qty} units`,
+          `Branding: ${methodLabel}`,
+          `Position(s): ${(positions as string[]).join(", ") || "None"}`,
+          ``,
+          `Pricing isn't included here — your account manager will send your personalised quote, including full pricing, directly to this email shortly.`,
+        ].join("\n");
+
+        await sendMail({
+          to: email,
+          subject: `We've received your quote request — ${reference}`,
+          html: confirmationHtml,
+          text: confirmationText,
+        });
+      } catch (err) {
+        console.error("Customer confirmation email error:", err);
+      }
     }
 
     // Save single-product quote to admin DB
