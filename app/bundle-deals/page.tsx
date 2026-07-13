@@ -61,7 +61,7 @@ export default function BundleDealsPage() {
                     style={{ background:"radial-gradient(ellipse 70% 60% at 50% 45%, rgba(0,65,249,0.08) 0%, transparent 70%)" }}/>
                   <Image src={b.image} alt={b.name} width={1400} height={787}
                     className="relative z-10 transition-transform duration-500 group-hover:scale-[1.03]"
-                    style={{ width:"auto", height:"56%", maxWidth:"80%", objectFit:"contain", filter:"brightness(1.05)" }}
+                    style={{ width:"auto", height:"64%", maxWidth:"90%", objectFit:"contain", filter:"brightness(1.05)" }}
                     sizes="(max-width:768px) 90vw, 45vw"/>
 
                   {/* Saving badge */}
