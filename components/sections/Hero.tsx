@@ -242,7 +242,7 @@ export default function Hero({ introComplete = false }: HeroProps) {
         {[
           { value: "5+", label: "Products Available" },
           { value: "<5hrs", label: "Quote Response" },
-          { value: "100%", label: "Quality Guaranteed" },
+          { value: "100%", label: "Quality Checked" },
         ].map((stat) => (
           <div key={stat.label} className="flex flex-col gap-0.5">
             <span

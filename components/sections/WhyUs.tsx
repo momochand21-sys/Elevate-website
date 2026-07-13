@@ -8,9 +8,9 @@ const reasons = [
   {
     number: "01",
     title: "Premium Quality, Every Time",
-    body: "We work only with ISO-certified manufacturers. Every garment is quality-checked before it leaves our warehouse — no shortcuts, no compromises. If it's not right, we replace it at zero cost.",
+    body: "We work only with ISO-certified manufacturers. Every garment is quality-checked before it leaves our warehouse — no shortcuts, no compromises. Genuine manufacturing faults are reprinted or replaced at zero cost.",
     metric: "100%",
-    metricLabel: "Quality guaranteed",
+    metricLabel: "Quality checked",
   },
   {
     number: "02",

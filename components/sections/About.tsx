@@ -29,7 +29,7 @@ function AnimatedCounter({ end, suffix = "", prefix = "", duration = 2000 }: { e
 const stats = [
   { value: 5,  suffix: "+",    label: "Products Available"       },
   { value: 0,  suffix: "",      label: "Hidden Fees"               },
-  { value: 100, suffix: "%",   label: "Quality Guaranteed"        },
+  { value: 100, suffix: "%",   label: "Quality Checked"           },
   { value: 2,  suffix: " hrs", prefix: "< ", label: "Quote Response" },
 ];
 

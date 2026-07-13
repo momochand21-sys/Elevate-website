@@ -119,7 +119,7 @@ const FAQS = [
       },
       {
         q: "What if something arrives damaged or incorrect?",
-        a: "We have a 100% quality guarantee. If any garment arrives damaged, incorrectly branded, or not to specification, we'll reprint or replace it at no cost to you — no argument, no delay. Contact us within 5 days of receiving your order.",
+        a: "If a garment arrives damaged, incorrectly branded, or made to the wrong specification due to an error on our part, we'll reprint or replace it at no cost. Contact us within 5 days of receiving your order with photos of the issue, and our team will review the claim and resolve it promptly.",
       },
     ],
   },
@@ -149,7 +149,7 @@ const FAQS = [
     items: [
       {
         q: "What is your returns policy?",
-        a: "Because all garments are custom branded to your specification, we cannot accept returns for change of mind. However, if your order is incorrect, damaged, or not to the agreed specification, we will replace or refund in full. Always check your digital proof carefully before approving production.",
+        a: "Because all garments are custom branded to your specification, we cannot accept returns for change of mind. If your order is genuinely incorrect, damaged, or doesn't match the agreed specification due to an error on our part, contact us within 5 days with photos and we'll review the claim, then replace or refund in full where a fault is confirmed. Always check your digital proof carefully before approving production.",
       },
 
     ],
